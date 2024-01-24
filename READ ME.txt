@@ -1,0 +1,28 @@
+För att köra applikationen gör följande:
+
+   1. Öppna VSCode
+   2. Klicka på File och sedan "Open Folder"
+   3. Navigera till projektet, välj "Rise V2/Program" och tryck på öppna
+   4. I Visual Studio Code explorer, kan du
+	1. Expandera paketet "src" och sedan "startMenu" 
+   	2. Öppna klassen "StartingScreen"
+   	3. Kör klassen "StartingScreen"
+
+Följande är mest för att tydliggöra vad som sker efter programmet starts:
+
+Om gui:t inte laddar vid första körning, vänligen stäng ner och starta om klassen.
+
+   4. Välj antal spelare. Tryck confirm.
+   5. Skriv in namn på spelarna och välj färger för respektive spelare
+   6. Tryck start game.
+   
+   7. Tryck roll dice för att börja köra, glöm inte att trycka "end turn" för att
+      avsluta tur.
+   8. Ha kul!
+
+GIT Repository link :   https://github.com/Muhammad-Y/Project-Rise-V2.git
+			https://github.com/Muhammad-Y/Project-Rise-V2
+
+Inte säker på vilken ni vill ha så vi bifogar båda. Vi hade en annan repository men
+på grund av git-strul var gruppen tvungna till att skapa nytt projekt för 
+att få saker och ting att fungera igen. Det var inte alls mycket som gick förlorat.
