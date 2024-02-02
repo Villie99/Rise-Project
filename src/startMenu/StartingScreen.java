@@ -246,7 +246,7 @@ public class StartingScreen extends JFrame {
 
 	/**
 	 * Buttonlistener class, listens for clicks.
-	 * @author Aevan Dino
+	 * @author Petter Carlsson & Villie Brandt
 	 */
 	private class ButtonListener implements ActionListener {
 		boolean name;
@@ -258,28 +258,11 @@ public class StartingScreen extends JFrame {
 			}
 
 			if (e.getSource() == mute) {
-				if (mute.getText().contains("n")) {
-					mute.setText("Music Off");
-					bgm.pauseMusic();
-				} else {
-					mute.setText("Music On");
-					bgm.startMusic();
-				}
+				music();
 			}
 
 			if (e.getSource() == btnConfirm) {
-
-				if (radioButtons[0].isSelected()) {
-					btnPressed(2, true);
-					amountOfPlayers = 2;
-				} else if (radioButtons[1].isSelected()) {
-					btnPressed(3, true);
-					amountOfPlayers = 3;
-
-				} else if (radioButtons[2].isSelected()) {
-					btnPressed(4, true);
-					amountOfPlayers = 4;
-				}
+				amountOfPlayers();
 			}
 
 			if (e.getSource() == btnStartGame) {
@@ -298,9 +281,43 @@ public class StartingScreen extends JFrame {
 		}
 
 		/**
+		 * Method to mute the music
+		 * @autor Petter Carlsson & Villie Brandt
+		 */
+		private String music() {
+			if (mute.getText().contains("n")) {
+				mute.setText("Music Off");
+				bgm.pauseMusic();
+				return "Music Off";
+			} else {
+				mute.setText("Music On");
+				bgm.startMusic();
+				return "Music On";
+			}
+		}
+		
+		/**
+		 * Method to check how many players are chosen
+		 * @autor Petter Carlsson & Villie Brandt
+		 */
+		private int amountOfPlayers() {
+			if (radioButtons[0].isSelected()) {
+				btnPressed(2, true);
+				amountOfPlayers = 2;
+			} else if (radioButtons[1].isSelected()) {
+				btnPressed(3, true);
+				amountOfPlayers = 3;
+
+			} else if (radioButtons[2].isSelected()) {
+				btnPressed(4, true);
+				amountOfPlayers = 4;
+			}
+			return amountOfPlayers;
+		}
+		/**
 		 * Method to check if the names are valid
 		 * @return boolean
-		 * @autor Petter Carlsson & Villie Brant
+		 * @autor Petter Carlsson & Villie Brandt
 		 */
 		private boolean nameCheck() {
 			ArrayList<String> arraylist = new ArrayList<>();
@@ -320,34 +337,34 @@ public class StartingScreen extends JFrame {
 		 * Method to check if there isnt more than two of the same color
 		 * @param amountOfPlayers
 		 * @return boolean
-		 * @autor Petter Carlsson & Villie Brant
+		 * @autor Petter Carlsson & Villie Brandt
 		 */
 		private boolean colorCheck(int amountOfPlayers) {
-				switch(amountOfPlayers) {
+			switch(amountOfPlayers) {
 
-				case 2:
-					if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem())) {
-						return false;
-					}
-					break;
+			case 2:
+				if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem())) {
+					return false;
+				}
+				break;
 
-				case 3:
-					if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
-							|| playerColors[2].getSelectedItem().equals(playerColors[0].getSelectedItem())) {
-						return false;
-					} 
-					break;
+			case 3:
+				if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
+						|| playerColors[2].getSelectedItem().equals(playerColors[0].getSelectedItem())) {
+					return false;
+				} 
+				break;
 
-				case 4:
-					if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
-							|| playerColors[2].getSelectedItem().equals(playerColors[3].getSelectedItem())
-							|| playerColors[0].getSelectedItem().equals(playerColors[3].getSelectedItem())) {
-						return false;
-					}
-					break;
+			case 4:
+				if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
+						|| playerColors[2].getSelectedItem().equals(playerColors[3].getSelectedItem())
+						|| playerColors[0].getSelectedItem().equals(playerColors[3].getSelectedItem())) {
+					return false;
+				}
+				break;
+			}
+			return true;
 		}
-		return true;
-	}
 
 		/**
 		 * Method called when player clicks start game
