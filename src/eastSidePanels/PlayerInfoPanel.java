@@ -21,7 +21,6 @@ import player.PlayerList;
  *
  */
 public class PlayerInfoPanel extends JPanel {
-
 	private static final long serialVersionUID = 1L;
 
 	private JLabel lblName = new JLabel("");
@@ -45,7 +44,7 @@ public class PlayerInfoPanel extends JPanel {
 	 * playernbr is to specify what player
 	 */
 	public PlayerInfoPanel(PlayerList playerList, int playernbr) {
-
+        
 		setPreferredSize(new Dimension(345, 860));
 		p1.setBounds(10, 5, 330, 50);
 		setBackground(Color.DARK_GRAY);

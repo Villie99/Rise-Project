@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -248,6 +249,8 @@ public class StartingScreen extends JFrame {
 	 * @author Aevan Dino
 	 */
 	private class ButtonListener implements ActionListener {
+		boolean name;
+		boolean color;
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource() == btnReset) {
@@ -280,43 +283,71 @@ public class StartingScreen extends JFrame {
 			}
 
 			if (e.getSource() == btnStartGame) {
-
-				if(tfPlayer1.getText().length()==0 || tfPlayer2.getText().length()==0 || tfPlayer3.getText().length()==0 || tfPlayer4.getText().length()==0) {
-					JOptionPane.showMessageDialog(null, "All players must have a name");
-				} else {
-
-					switch(amountOfPlayers) {
-
-					case 2:
-						if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem())) {
-							JOptionPane.showMessageDialog(null, "Two players are not allowed to have the same color");
-						} else {
-							startUpGame();
-						}
-						break;
-
-					case 3:
-						if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
-								|| playerColors[2].getSelectedItem().equals(playerColors[0].getSelectedItem())) {
-							JOptionPane.showMessageDialog(null, "Two or more players are not allowed to have the same color");
-						} else {
-							startUpGame();
-						}
-						break;
-
-					case 4:
-						if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
-								|| playerColors[2].getSelectedItem().equals(playerColors[3].getSelectedItem())
-								|| playerColors[0].getSelectedItem().equals(playerColors[3].getSelectedItem())) {
-							JOptionPane.showMessageDialog(null, "Two or more players are not allowed to have the same color");
-						} else {
-							startUpGame();
-						}
-						break;
-					}
+				name = nameCheck();
+				color = colorCheck(amountOfPlayers);
+				if (name && color) {
+					startUpGame();
+				}
+				if (!name) {
+					JOptionPane.showMessageDialog(null, "Please enter a name for all players, only whitespaces arn't allowed");
+				}
+				if (!color) {
+					JOptionPane.showMessageDialog(null, "Two or more players are not allowed to have the same color");
 				}
 			}
 		}
+
+		/**
+		 * Method to check if the names are valid
+		 * @return boolean
+		 * @autor Petter Carlsson & Villie Brant
+		 */
+		private boolean nameCheck() {
+			ArrayList<String> arraylist = new ArrayList<>();
+			arraylist.add(tfPlayer1.getText());
+			arraylist.add(tfPlayer2.getText());
+			arraylist.add(tfPlayer3.getText());
+			arraylist.add(tfPlayer4.getText());
+			for (int i = 0; i < arraylist.size(); i++) {
+				if (arraylist.get(i).trim().length() == 0) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		/**
+		 * Method to check if there isnt more than two of the same color
+		 * @param amountOfPlayers
+		 * @return boolean
+		 * @autor Petter Carlsson & Villie Brant
+		 */
+		private boolean colorCheck(int amountOfPlayers) {
+				switch(amountOfPlayers) {
+
+				case 2:
+					if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem())) {
+						return false;
+					}
+					break;
+
+				case 3:
+					if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
+							|| playerColors[2].getSelectedItem().equals(playerColors[0].getSelectedItem())) {
+						return false;
+					} 
+					break;
+
+				case 4:
+					if(playerColors[0].getSelectedItem().equals(playerColors[1].getSelectedItem()) 
+							|| playerColors[2].getSelectedItem().equals(playerColors[3].getSelectedItem())
+							|| playerColors[0].getSelectedItem().equals(playerColors[3].getSelectedItem())) {
+						return false;
+					}
+					break;
+		}
+		return true;
+	}
 
 		/**
 		 * Method called when player clicks start game
