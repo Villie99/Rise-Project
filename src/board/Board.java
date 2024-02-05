@@ -21,7 +21,7 @@ import westSidePanel.WestSidePanel;
 
 
 /**
- * @author Muhammad Abdulkhuder, Seth Öberg, Rohan Samandari
+ * @author Muhammad Abdulkhuder, Seth ï¿½berg, Rohan Samandari
  *
  */
 public class Board extends JPanel {

@@ -69,7 +69,7 @@ public class PropertyWindow extends JPanel {
 
 			new PropertyWindow();
 			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i);
-			tab.addTab("Property" + (i + 1), playerProperties);
+			tab.addTab("Property " + (i + 1), playerProperties);
 			tab.setBackgroundAt(i, playerList.getPlayerFromIndex(getPlayerAt()).getProperty(i).getColor());
 
 		}

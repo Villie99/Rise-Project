@@ -145,39 +145,68 @@ public class ManageEvents {
 		int tempInt = 0;
 
 		if (tempProperty.getPurchaseable() == true) {
-			if (player.getBalance() < tempProperty.getPrice()) {
+			boolean check = purchesProperty(tempProperty, player);
+			if (!check) {
 				JOptionPane.showMessageDialog(null, "Not enough funds to purchase this property");
-			} else {
-				propertyDialog(tempProperty, player);
 			}
 		} else if (tempProperty.getPurchaseable() == false) {
+			payRent(tempProperty, player, tempInt);
+			
+		}
+	}
 
-			if (tempProperty.getLevel() == 0) {
-				tempInt = tempProperty.getDefaultRent();
+	/**
+	 * Method to pay rent if the property is owned by another player.
+	 * @param tempProperty, property in question.
+	 * @param player, player who landed on the property.
+	 * @param tempInt, temporary int to store the rent.
+	 * @author Petter Carlsson
+	 */
+	private void payRent(Property tempProperty, Player player, int tempInt) {
+		if (tempProperty.getLevel() == 0) {
+			tempInt = tempProperty.getDefaultRent();
 
-				control(player, tempInt);
-				if (player.isAlive() == true) {
-					JOptionPane.showMessageDialog(null, player.getName() + " paid " + tempProperty.getTotalRent() + " GC to " 
-							+ tempProperty.getOwner().getName());
-					westPanel.append(player.getName() + " paid " + tempProperty.getTotalRent() + " GC to "
-							+ tempProperty.getOwner().getName() + "\n");
-					player.decreaseBalace(tempInt);
-					player.decreaseNetWorth(tempInt);
-					tempProperty.getOwner().increaseBalance(tempInt);
-				}
-			} else {
-				tempInt = tempProperty.getTotalRent();
-				control(player, tempInt);
-				if (player.isAlive() == true) {
-					JOptionPane.showMessageDialog(null, player.getName() + " paid " + tempProperty.getTotalRent() + " GC to " 
-							+ tempProperty.getOwner().getName());
-					westPanel.append(player.getName() + " paid " + tempProperty.getTotalRent() + " GC to "
-							+ tempProperty.getOwner().getName() + "\n");
-					player.decreaseBalace(tempInt);
-					tempProperty.getOwner().increaseBalance(tempInt);
-				}
+			control(player, tempInt);
+			if (player.isAlive() == true) {
+				JOptionPane.showMessageDialog(null, player.getName() + " paid " + tempProperty.getTotalRent() + " GC to " 
+						+ tempProperty.getOwner().getName());
+				westPanel.append(player.getName() + " paid " + tempProperty.getTotalRent() + " GC to "
+						+ tempProperty.getOwner().getName() + "\n");
+				player.decreaseBalace(tempInt);
+				player.decreaseNetWorth(tempInt);
+				tempProperty.getOwner().increaseBalance(tempInt);
+			}
+		} else {
+			tempInt = tempProperty.getTotalRent();
+			control(player, tempInt);
+			if (player.isAlive() == true) {
+				JOptionPane.showMessageDialog(null, player.getName() + " paid " + tempProperty.getTotalRent() + " GC to " 
+						+ tempProperty.getOwner().getName());
+				westPanel.append(player.getName() + " paid " + tempProperty.getTotalRent() + " GC to "
+						+ tempProperty.getOwner().getName() + "\n");
+				player.decreaseBalace(tempInt);
+				tempProperty.getOwner().increaseBalance(tempInt);
 			}
 		}
+	}
+
+	/**
+	 * Method to purchase a property if the player has enough funds.
+	 * @param property, property in question.
+	 * @param player, player who landed on the property.
+	 * @return true if the player has enough funds to purchase the property.
+	 * @author Petter Carlsson
+	 */
+	private boolean purchesProperty(Property property, Player player) {
+		if (property.getPurchaseable()) {
+			if (player.getBalance() < property.getPrice()) {
+				return false;
+			} else {
+				propertyDialog(property, player);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -234,13 +263,23 @@ public class ManageEvents {
 		Tavern tempTavernObj = (Tavern) tile;
 
 		if (tempTavernObj.getPurchaseable()) {
-			if (player.getBalance() < tempTavernObj.getPrice()) {
-				JOptionPane.showMessageDialog(null, "Not enough funds to purchase this tavern");
-			} else {
-				tavernDialog(tempTavernObj, player);
+			boolean check = purchaseTavern(tempTavernObj, player);
+			if (!check) {
+				JOptionPane.showMessageDialog(null, "Not enough funds to purchase this property");
 			}
 		} else {
-			int randomValue = 0;
+			payTavernRent(tempTavernObj, player);
+		}
+	}
+
+	/**
+	 * Method to pay rent if the tavern is owned by another player.
+	 * @param tempTavernObj, tavern in question.
+	 * @param player, player who landed on the tavern.
+	 * @author Petter Carlsson
+	 */
+	private void payTavernRent(Tavern tempTavernObj, Player player) {
+		int randomValue = 0;
 
 			if (tempTavernObj.getOwner().getAmountOfTaverns() == 1) {
 				randomValue = (getRoll() * 10);
@@ -258,7 +297,24 @@ public class ManageEvents {
 				tempTavernObj.getOwner().increaseNetWorth(randomValue);
 				player.decreaseBalace(randomValue);
 			}
+	}
+
+	/**
+	 * Method to purchase a tavern if the player has enough funds.
+	 * @param tavern, tavern in question.
+	 * @param player, player who landed on the tavern.
+	 * @return true if the player has enough funds to purchase the tavern.
+	 */
+	private boolean purchaseTavern(Tavern tavern, Player player) {
+		if (tavern.getPurchaseable()) {
+			if (player.getBalance() < tavern.getPrice()) {
+				return false;
+			} else {
+				tavernDialog(tavern, player);
+				return true;
+			}
 		}
+		return false;
 	}
 
 	/**
