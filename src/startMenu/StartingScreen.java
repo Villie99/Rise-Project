@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 
 import board.Board;
 import board.ColorIconMap;
+import board.Rules;
 import combinedPanels.GamePanels;
 import dice.ShowPlayersTurn;
 import menu.Menu;
@@ -38,6 +39,8 @@ public class StartingScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	private Rules rules = new Rules();
+
 	private BackgroundMusic bgm = new BackgroundMusic();
 	private PlayerList playerList = new PlayerList();
 	private GamePanels mainWindow = new GamePanels();
@@ -45,6 +48,7 @@ public class StartingScreen extends JFrame {
 	private JButton btnConfirm = new JButton("Confirm");
 	private JButton btnStartGame = new JButton("Start Game");
 	private JButton btnReset = new JButton("Reset");
+	private JButton btnRules = new JButton("Rules");
 
 	private ImageIcon imgBackground = new ImageIcon(
 			new ImageIcon("images/fancyRoll.jpg").getImage().getScaledInstance(900, 860, Image.SCALE_SMOOTH));
@@ -173,6 +177,13 @@ public class StartingScreen extends JFrame {
 		btnReset.setBounds(375, 575, 150, 30);
 		btnReset.setVisible(false);
 		btnReset.addActionListener(new ButtonListener());
+		
+		/**
+		 * Rules button
+		 */
+		btnRules.setBounds(415, 610, 70, 20);
+		btnRules.setVisible(false);
+		btnRules.addActionListener(new ButtonListener());
 
 		/**
 		 * Mute button
@@ -193,6 +204,7 @@ public class StartingScreen extends JFrame {
 		lblBackground.add(btnReset);
 		lblBackground.add(btnStartGame);
 		lblBackground.add(mute);
+		lblBackground.add(btnRules);
 		add(lblBackground);
 		new Menu(bgm);
 	}
@@ -278,6 +290,18 @@ public class StartingScreen extends JFrame {
 					JOptionPane.showMessageDialog(null, "Two or more players are not allowed to have the same color");
 				}
 			}
+			if (e.getSource() == btnRules) {
+				showRules();
+			}
+		}
+
+		/**
+		 * Method to show the rules
+		 * @autor Petter Carlsson
+		 */
+		private String showRules() {
+			rules.showRules();
+			return "Rules shown!";
 		}
 
 		/**
@@ -403,6 +427,7 @@ public class StartingScreen extends JFrame {
 				playerTf[i].setVisible(bool);
 				playerColors[i].setVisible(bool);
 			}
+			btnRules.setVisible(bool);
 			btnStartGame.setVisible(bool);
 			btnReset.setVisible(bool);
 			btnConfirm.setEnabled(!bool);
