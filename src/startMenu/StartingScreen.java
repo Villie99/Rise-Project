@@ -254,7 +254,7 @@ public class StartingScreen extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource() == btnReset) {
-				btnPressed(3, false);
+				btnPressed(4, false);
 			}
 
 			if (e.getSource() == mute) {
