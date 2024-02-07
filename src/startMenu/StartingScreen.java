@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import board.Board;
 import board.ColorIconMap;
@@ -105,9 +106,10 @@ public class StartingScreen extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		StartingScreen su = new StartingScreen();
-		su.initializeGUI();
-
+    SwingUtilities.invokeLater(() -> {
+        StartingScreen su = new StartingScreen();
+        su.initializeGUI();
+    });
 	}
 
 	
