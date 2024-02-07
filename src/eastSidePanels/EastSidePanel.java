@@ -7,12 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import player.Player;
 import player.PlayerList;
 
 /**
  * this class add tabs that displays informations about the players
  * in tabs
- * @author Abdulkhuder Muhammad, Sebastian Viro.
+ * @author Abdulkhuder Muhammad, Sebastian Viro, Petter Carlsson.
  *
  */
 public class EastSidePanel extends JPanel {
@@ -37,7 +38,6 @@ public class EastSidePanel extends JPanel {
 	 * Draws the GUI
 	 */
 	public EastSidePanel() {
-
 		setPreferredSize(new Dimension(345, 860));
 		setOpaque(false);
 		setLayout(null);
@@ -62,7 +62,7 @@ public class EastSidePanel extends JPanel {
 
 		for (int i = 0; i < playerList.getLength(); i++) {
 			new EastSidePanel();
-			playerInfoPnl = new PlayerInfoPanel(playerList, i);
+			playerInfoPnl = new PlayerInfoPanel(playerList, i, this);
 			playerInfoPnl.setOpaque(false);
 			tab.addTab("Player " + (i + 1), playerInfoPnl);
 			tab.setOpaque(false);
@@ -73,7 +73,6 @@ public class EastSidePanel extends JPanel {
 		tab.setForeground(Color.white);
 		tab.setBackground(new Color(157, 0, 0));
 		tab.setBackgroundAt(currentPlayer, new Color(0, 157, 0));
-
 	}
 
 	/**

@@ -97,7 +97,7 @@ public class Dice extends JPanel implements ActionListener {
 	 */
 	public void initializePanel() {
 		
-		setPreferredSize(new Dimension(650, 140));
+		setPreferredSize(new Dimension(650, 120));
 		setLayout(new FlowLayout());
 		setOpaque(false);
 		

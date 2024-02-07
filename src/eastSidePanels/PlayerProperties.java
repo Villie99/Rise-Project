@@ -45,17 +45,19 @@ public class PlayerProperties extends JPanel implements ActionListener {
 	private String plus = "+";
 	private PlayerList playerList;
 	private int playerAtI, propertyAtI;
+	private EastSidePanel eastSidePanel;
 
 	/**
 	 * @param playerList
 	 * @param playerAtI
 	 * @param propertyAtI 
 	 */
-	public PlayerProperties(PlayerList playerList, int playerAtI, int propertyAtI) {
+	public PlayerProperties(PlayerList playerList, int playerAtI, int propertyAtI, EastSidePanel eastSidePanel) {
 
 		this.playerList = playerList;
 		this.playerAtI = playerAtI;
 		this.propertyAtI = propertyAtI;
+		this.eastSidePanel = eastSidePanel;
 
 		setBorder(null);
 
@@ -261,6 +263,8 @@ public class PlayerProperties extends JPanel implements ActionListener {
 				otherPlayersProperty.setOwner(activePlayer);
 				otherPlayer.addNewProperty(activePlayerProperty);
 
+				eastSidePanel.addPlayerList(playerList);
+
 				JOptionPane.showMessageDialog(null, "Trade Complete! Omedato gosaimasu!!!");
 
 			}
@@ -282,6 +286,9 @@ public class PlayerProperties extends JPanel implements ActionListener {
 
 				otherPlayer.increaseBalance(offer);
 				otherPlayer.increaseNetWorth(offer);
+
+				eastSidePanel.addPlayerList(playerList);
+
 				JOptionPane.showMessageDialog(null, "Trade Complete! Omedato gosaimasu!!!");
 
 			}
@@ -297,7 +304,7 @@ public class PlayerProperties extends JPanel implements ActionListener {
 	 * @return a string that says you have downgraded a property.
 	 * @autor Petter Carlsson.
 	 */
-	private String downgradeProperties() {
+	private String downgradeProperties() { 
 		Property tempProperty = playerList.getPlayerFromIndex(playerAtI).getPropertyAt(propertyAtI);
 		tempProperty.decreaseLevel();
 		String tempRes = taLevel.getText();
@@ -305,6 +312,7 @@ public class PlayerProperties extends JPanel implements ActionListener {
 		if (tempRes.length() > tempProperty.getLevel()) {
 			tempRes = tempRes.substring(0, tempRes.length() - 1);
 			taLevel.setText(tempRes);
+			eastSidePanel.addPlayerList(playerList);
 			return "You have downgraded a property";
 		}
 		return "You didn't meat the requirement to downgraded a property";
@@ -322,6 +330,7 @@ public class PlayerProperties extends JPanel implements ActionListener {
 
 		if (tempRes.length() < tempProperty.getLevel()) {
 			taLevel.append(plus);
+			eastSidePanel.addPlayerList(playerList);
 			return "You have upgraded a property";
 		}
 		return "You didn't meat the requirement to upgraded a property";
@@ -335,6 +344,7 @@ public class PlayerProperties extends JPanel implements ActionListener {
 	private String sellProperties() {
 		Property tempProperty = playerList.getPlayerFromIndex(playerAtI).getPropertyAt(propertyAtI);
 		playerList.getPlayerFromIndex(playerAtI).sellProperty(tempProperty);
+		eastSidePanel.addPlayerList(playerList);
 		return "You have sold a property";
 	}
 

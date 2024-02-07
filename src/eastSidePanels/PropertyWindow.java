@@ -18,18 +18,21 @@ public class PropertyWindow extends JPanel {
 	private PlayerList playerList;
 	private JTabbedPane tab;
 	private PlayerProperties playerProperties;
+	private EastSidePanel eastSidePanel;
 
 	private int playerAt;
 
 	private int[] size;
 
 	/**
-	 * @param playerList
+	 * @param eastSidePanel
 	 * 
 	 *this method is used to update the panel
 	 */
 	
-	public PropertyWindow() {
+	public PropertyWindow(EastSidePanel eastSidePanel) {
+
+		this.eastSidePanel = eastSidePanel;
 
 		setPreferredSize(new Dimension(330, 600));
 		setOpaque(false);
@@ -52,6 +55,26 @@ public class PropertyWindow extends JPanel {
 
 	}
 
+	/**
+	 * this method loops the amount of players and adds tabs according to the number of 
+	 * properties
+	 */
+	public PropertyWindow() {
+
+		setPreferredSize(new Dimension(330, 600));
+		setOpaque(false);
+		setLayout(null);
+		UIManager.put("TabbedPane.contentOpaque", false);
+		UIManager.put("TabbedPane.selected", Color.cyan);
+
+		tab = new JTabbedPane();
+		tab.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		tab.setBorder(null);
+		tab.setBounds(0, 0, 330, 600);
+		add(tab);
+
+	}
+
 
 	/**
 	 * this method loops the amount of players and adds tabs according to the number of 
@@ -68,7 +91,7 @@ public class PropertyWindow extends JPanel {
 		for (int i = 0; i < size.length; i++) {
 
 			new PropertyWindow();
-			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i);
+			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i, eastSidePanel);
 			tab.addTab("Property " + (i + 1), playerProperties);
 			tab.setBackgroundAt(i, playerList.getPlayerFromIndex(getPlayerAt()).getProperty(i).getColor());
 
@@ -88,6 +111,10 @@ public class PropertyWindow extends JPanel {
 	 */
 	public void setPlayerAt(int playerAt) {
 		this.playerAt = playerAt;
+	}
+
+	public EastSidePanel getEastSidePanel() {
+		return eastSidePanel;
 	}
 
 }

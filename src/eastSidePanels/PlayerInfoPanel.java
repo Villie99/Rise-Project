@@ -17,7 +17,7 @@ import player.PlayerList;
  * This class is used to show information about the players
  * and the current properties in tabs from property window
  * 
- * @author Abdulkhuder Muhammad, Sebastian Viro.
+ * @author Abdulkhuder Muhammad, Sebastian Viro, Petter Carlsson.
  *
  */
 public class PlayerInfoPanel extends JPanel {
@@ -32,7 +32,8 @@ public class PlayerInfoPanel extends JPanel {
 	private JPanel p3 = new JPanel();
 	private JPanel p4 = new JPanel();
 	
-	private PropertyWindow propertyWindow = new PropertyWindow();
+	private PropertyWindow propertyWindow;
+	private EastSidePanel eastSidePanel;
 
 	private Font font = new Font("ALGERIAN", Font.PLAIN, 18);
 
@@ -43,7 +44,10 @@ public class PlayerInfoPanel extends JPanel {
 	 * player list is used to get the players to display correct information
 	 * playernbr is to specify what player
 	 */
-	public PlayerInfoPanel(PlayerList playerList, int playernbr) {
+	public PlayerInfoPanel(PlayerList playerList, int playernbr, EastSidePanel eastSidePanel) {
+
+		this.eastSidePanel = eastSidePanel;
+		propertyWindow = new PropertyWindow(eastSidePanel);
         
 		setPreferredSize(new Dimension(345, 860));
 		p1.setBounds(10, 5, 330, 50);
@@ -95,6 +99,14 @@ public class PlayerInfoPanel extends JPanel {
 		propertyWindow.addPlayerList(playerList);
 		add(propertyWindow);
 
+	}
+
+	/**
+	 * @return the propertyWindow
+	 * @author Petter Carlsson
+	 */
+	public EastSidePanel getEastSidePanel() {
+		return eastSidePanel;
 	}
 
 }
