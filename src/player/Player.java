@@ -14,7 +14,7 @@ import tiles.Tile;
 /**
  * Player class deals with everything that has to do with a player.
  * 
- * @author AevanDino, Seth Öberg, Muhammad Hasan, Sebastian Viro
+ * @author AevanDino, Seth ï¿½berg, Muhammad Hasan, Sebastian Viro, Petter Carlsson, Villie Brandt
  */
 public class Player {
 
@@ -222,6 +222,14 @@ public class Player {
 	}
 
 	/**
+	 * @param icon, the image of a player
+	 * @return playerIcon, the image of a player
+	 */
+	public ImageIcon setIcon(ImageIcon icon) {
+		return this.playerIcon = icon;
+	}
+
+	/**
 	 * @param playerBalance the playerBalance to set
 	 */
 	public void setBalance(int playerBalance) {
@@ -382,18 +390,101 @@ public class Player {
 		return this.propertiesOwned.get(pos);
 	}
 
+
 	public void checkPlayerRank() {
 
 		if (getNetWorth() >= 2000) {
 			setPlayerRank(PlayerRanks.KNIGHT);
+			rankIconUpgrade(PlayerRanks.KNIGHT);
 		}
 
 		if (getNetWorth() >= 4000) {
 			setPlayerRank(PlayerRanks.LORD);
+			rankIconUpgrade(PlayerRanks.LORD);
 		}
 		if (getNetWorth() >= 7500) {
 			setPlayerRank(PlayerRanks.KINGS);
+			rankIconUpgrade(PlayerRanks.KINGS);
 		}
+	}
+
+	public String rankIconUpgrade(PlayerRanks playerRank) {
+		String currentImage = getImage().toString();
+		switch (playerRank) {
+			case PlayerRanks.KNIGHT:
+				if (currentImage.equals("images/playerRed.jpg")) {
+					setIcon(new ImageIcon("images/playerRed.jpg"));//Ny Knight Bild
+				}
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
+				}
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
+				}
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
+				}
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
+				}
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
+				}
+				if (currentImage.equals("images/playerPurple.jpg")) {
+					setIcon(new ImageIcon("images/playerPurple.jpg"));
+				}
+				break;
+	
+			case PlayerRanks.LORD:
+				if (currentImage.equals("images/playerRed.jpg")) {
+					setIcon(new ImageIcon("images/playerRed.jpg"));
+				}
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
+				}
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
+				}
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
+				}
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
+				}
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
+				}
+				if (currentImage.equals("images/playerPurple.jpg")) {
+					setIcon(new ImageIcon("images/playerPurple.jpg"));
+				}
+				break;
+
+			case PlayerRanks.KINGS:
+				if (currentImage.equals("images/playerRed.jpg")) {
+					setIcon(new ImageIcon("images/playerRed.jpg"));
+				}
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
+				}
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
+				}
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
+				}
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
+				}
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
+				}
+				if (currentImage.equals("images/playerPurple.jpg")) {
+					setIcon(new ImageIcon("images/playerPurple.jpg"));
+				}
+				break;
+		}
+		
+		return null;
 	}
 
 	/**

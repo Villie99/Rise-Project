@@ -249,6 +249,10 @@ public class StartingScreen extends JFrame {
 			playerTf[i].setVisible(false);
 			playerTf[i].addMouseListener(new MouseAction());
 
+			if (playerColors[i].equals("RED")) {
+
+			}
+
 			playerColors[i].setBounds(530, 360 + i * 40, 100, 30);
 			playerColors[i].setVisible(false);
 
@@ -278,7 +282,9 @@ public class StartingScreen extends JFrame {
 			if (e.getSource() == btnConfirm) {
 				amountOfPlayers();
 			}
-
+			if (e.getSource() == btnRules) {
+				showRules();
+			}
 			if (e.getSource() == btnStartGame) {
 				name = nameCheck();
 				color = colorCheck(amountOfPlayers);
@@ -292,9 +298,7 @@ public class StartingScreen extends JFrame {
 					JOptionPane.showMessageDialog(null, "Two or more players are not allowed to have the same color");
 				}
 			}
-			if (e.getSource() == btnRules) {
-				showRules();
-			}
+			
 		}
 
 		/**
@@ -406,6 +410,9 @@ public class StartingScreen extends JFrame {
 		/**
 		 * Creates the right amount of players.
 		 */
+
+		//String filePath = "/images/playerRed.jpg";
+		//ImageIcon playerIcon = new ImageIcon(filePath);
 		private void createNewUsers() {
 
 			for (int i = 0; i < amountOfPlayers; i++) {
@@ -413,6 +420,7 @@ public class StartingScreen extends JFrame {
 				if (playerTf[i].getText().length()>=10) {
 					playerTf[i].setText(playerTf[i].getText().substring(0, 10));
 				}
+				//playerList.addNewPlayer(playerTf[i].getText(), playerIcon);
 				playerList.addNewPlayer(playerTf[i].getText(), (String) playerColors[i].getSelectedItem());
 			}
 
