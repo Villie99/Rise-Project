@@ -61,6 +61,9 @@ public class StartingScreen extends JFrame {
 
 	private JPanel pnlPlayerInfo = new JPanel();
 
+	private int widht = 900;
+	private int height = 830;
+
 	private JRadioButton[] radioButtons = new JRadioButton[4];
 	private ButtonGroup btnGroup = new ButtonGroup();
 
@@ -126,14 +129,14 @@ public class StartingScreen extends JFrame {
 		/**
 		 * JPanel for information about players
 		 */
-		pnlPlayerInfo.setBounds(0, 0, 900, 830);
+		pnlPlayerInfo.setBounds(0, 0, widht, height);
 		pnlPlayerInfo.setOpaque(false);
 		pnlPlayerInfo.setLayout(null);
 
 		/**
 		 * Label used to create a background
 		 */
-		lblBackground.setBounds(0, 0, 900, 830);
+		lblBackground.setBounds(0, 0, widht, height);
 		lblBackground.setIcon(imgBackground);
 		lblBackground.setLayout(null);
 
@@ -212,7 +215,7 @@ public class StartingScreen extends JFrame {
 	}
 
 	public void createFrame() {
-		setSize(900, 830);
+		setSize(widht, height);
 		setTitle("Choose Player!");
 		setLayout(null);
 		setVisible(true);

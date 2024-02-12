@@ -385,6 +385,8 @@ public class Player {
 	 * 
 	 * @param pos
 	 * @return
+	 * 
+	 * @author Petter Carlsson & Villie Brandt
 	 */
 	public Tile getProperty(int pos) {
 		return this.propertiesOwned.get(pos);
@@ -393,26 +395,97 @@ public class Player {
 
 	public void checkPlayerRank() {
 
-		if (getNetWorth() >= 2000) {
+		int netWorth = getNetWorth();
+
+		if (netWorth >= 2000) {
 			setPlayerRank(PlayerRanks.KNIGHT);
 			rankIconUpgrade(PlayerRanks.KNIGHT);
 		}
 
-		if (getNetWorth() >= 4000) {
+		if (netWorth >= 4000) {
 			setPlayerRank(PlayerRanks.LORD);
 			rankIconUpgrade(PlayerRanks.LORD);
 		}
-		if (getNetWorth() >= 7500) {
+		if (netWorth >= 7500) {
 			setPlayerRank(PlayerRanks.KINGS);
 			rankIconUpgrade(PlayerRanks.KINGS);
 		}
+
+		if (netWorth < 2000){
+			setPlayerRank(PlayerRanks.PEASANT);
+			rankIconDowngrade(playerRank.PEASANT);
+		}
+
+		if (netWorth < 4000 && netWorth >= 2000)  {
+			setPlayerRank(PlayerRanks.KNIGHT);
+			rankIconDowngrade(PlayerRanks.KNIGHT);
+		}
+		
+	}
+	public String rankIconDowngrade(PlayerRanks playerRank) {
+		String currentImage = getImage().toString();
+		switch (playerRank) {
+			case PlayerRanks.PEASANT:
+				if (currentImage.equals("images/playerRed.jpg")) { //Peasant bild
+					setIcon(new ImageIcon("images/playerRed.jpg")); // Knight bild
+				}
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
+				}
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
+				}
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
+				}
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
+				}
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
+				}
+				if (currentImage.equals("images/playerPurple.jpg")) {
+					setIcon(new ImageIcon("images/playerPurple.jpg"));
+					
+				}
+				break;
+	
+			case PlayerRanks.KNIGHT:
+				if (currentImage.equals("images/playerRed.jpg")) { //filnamnet på lord bilden
+					setIcon(new ImageIcon("images/playerRed.jpg")); //filnmanet på knight builden
+				}
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
+				}
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
+				}
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
+				}
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
+				}
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
+				}
+				if (currentImage.equals("images/playerPurple.jpg")) {
+					setIcon(new ImageIcon("images/playerPurple.jpg"));
+				}
+				break;
+
+			
+		}
+		
+		return null;
 	}
 
+	
 	public String rankIconUpgrade(PlayerRanks playerRank) {
 		String currentImage = getImage().toString();
 		switch (playerRank) {
 			case PlayerRanks.KNIGHT:
-				if (currentImage.equals("images/playerRed.jpg")) {
+				if (currentImage.equals("images/playerRed.jpg")) {//Peasant bilden
 					setIcon(new ImageIcon("images/playerRed.jpg"));//Ny Knight Bild
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
@@ -436,8 +509,8 @@ public class Player {
 				break;
 	
 			case PlayerRanks.LORD:
-				if (currentImage.equals("images/playerRed.jpg")) {
-					setIcon(new ImageIcon("images/playerRed.jpg"));
+				if (currentImage.equals("images/playerRed.jpg")) { // Knight bilden
+					setIcon(new ImageIcon("images/playerRed.jpg"));//Lord Bilden
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
 					setIcon(new ImageIcon("images/playerMagenta.jpg"));
@@ -460,8 +533,8 @@ public class Player {
 				break;
 
 			case PlayerRanks.KINGS:
-				if (currentImage.equals("images/playerRed.jpg")) {
-					setIcon(new ImageIcon("images/playerRed.jpg"));
+				if (currentImage.equals("images/playerRed.jpg")) { // Lord bilden
+					setIcon(new ImageIcon("images/playerRed.jpg")); // King bilden
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
 					setIcon(new ImageIcon("images/playerMagenta.jpg"));
