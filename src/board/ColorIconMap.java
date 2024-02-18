@@ -22,12 +22,12 @@ public class ColorIconMap {
 	 * The method that adds all the colors to a hashmap
 	 */
 	private void addColorsToMap() {
-		colorMap.put("MAGENTA", new ImageIcon("images/playerMagenta.jpg"));
-		colorMap.put("RED", new ImageIcon("images/playerRed.jpg"));
-		colorMap.put("ORANGE", new ImageIcon("images/playerOrange.jpg"));
-		colorMap.put("YELLOW", new ImageIcon("images/playerYellow.jpg"));
-		colorMap.put("GREEN", new ImageIcon("images/playerGreen.jpg"));
-		colorMap.put("CYAN", new ImageIcon("images/playerCyan.jpg"));
+		colorMap.put("MAGENTA", new ImageIcon("images/playerMagentaPeasant.png"));
+		colorMap.put("RED", new ImageIcon("images/playerRedPeasant.png"));
+		colorMap.put("ORANGE", new ImageIcon("images/playerOrangePeasant.png"));
+		colorMap.put("YELLOW", new ImageIcon("images/playerYellowPeasan.png"));
+		colorMap.put("GREEN", new ImageIcon("images/playerGreenPeasant.png"));
+		colorMap.put("CYAN", new ImageIcon("images/playerCyanPeasant.png"));
 		colorMap.put("PURPLE", new ImageIcon("images/playerPurple.jpg"));
 	}
 

@@ -12,7 +12,7 @@ public class Tavern implements Tile{
 	private String info = "";
 	private boolean purchasable;
 	private Player owner;
-	private Color color = new Color(131, 166, 219, 255); 
+	private Color color; 
 	private int price;
 	private String name;
 	private ImageIcon img = new ImageIcon("tilePics/tavern.png");
