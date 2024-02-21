@@ -1,10 +1,10 @@
-package player;
+package test;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
-public class TestPlayerRank {
-/* 
+public class playerRankTest {
+
     @Test
     public void testPlayerRankKnightBoundary() {
         Player player = new Player();
@@ -68,5 +68,5 @@ public class TestPlayerRank {
         player.checkPlayerRank();
         assertEquals(PlayerRanks.KNIGHT, player.getPlayerRank());
     }
-    */
+    
 }
