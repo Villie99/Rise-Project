@@ -55,11 +55,14 @@ public class StartingScreen extends JFrame {
 			new ImageIcon("images/fancyRoll.jpg").getImage().getScaledInstance(900, 860, Image.SCALE_SMOOTH));
 
 	private Font fontRadioButtons = new Font("Gabriola", Font.PLAIN, 24);
-	private Font fontHeader = new Font("Gabriola", Font.BOLD, 92); 
-	private Font fontLabel = new Font("Gabriola", Font.BOLD, 42);
+	private Font fontHeader = new Font("Gabriola", Font.BOLD, 72); 
+	private Font fontLabel = new Font("Gabriola", Font.BOLD, 22);
 	private Font fontLabelPlayer = new Font("Gabriola", Font.BOLD, 30);
 
 	private JPanel pnlPlayerInfo = new JPanel();
+
+	private int widht = 900;
+	private int height = 830;
 
 	private JRadioButton[] radioButtons = new JRadioButton[4];
 	private ButtonGroup btnGroup = new ButtonGroup();
@@ -126,14 +129,14 @@ public class StartingScreen extends JFrame {
 		/**
 		 * JPanel for information about players
 		 */
-		pnlPlayerInfo.setBounds(0, 0, 900, 830);
+		pnlPlayerInfo.setBounds(0, 0, widht, height);
 		pnlPlayerInfo.setOpaque(false);
 		pnlPlayerInfo.setLayout(null);
 
 		/**
 		 * Label used to create a background
 		 */
-		lblBackground.setBounds(0, 0, 900, 830);
+		lblBackground.setBounds(0, 0, widht, height);
 		lblBackground.setIcon(imgBackground);
 		lblBackground.setLayout(null);
 
@@ -212,7 +215,7 @@ public class StartingScreen extends JFrame {
 	}
 
 	public void createFrame() {
-		setSize(900, 830);
+		setSize(widht, height);
 		setTitle("Choose Player!");
 		setLayout(null);
 		setVisible(true);
@@ -241,26 +244,23 @@ public class StartingScreen extends JFrame {
 	 */
 	public void CreatePlayers() {
 		for (int i = 0; i < 4; i++) {
-			playerLabels[i].setBounds(280, 360 + i * 40, 150, 50);
+			playerLabels[i].setBounds(280, 360 + i * 60, 150, 50);
 			playerLabels[i].setFont(fontLabelPlayer);
 			playerLabels[i].setVisible(false);
-
-			playerTf[i].setBounds(375, 360 + i * 40, 150, 30);
+	
+			playerTf[i].setBounds(430, 360 + i * 60, 150, 30);
 			playerTf[i].setVisible(false);
 			playerTf[i].addMouseListener(new MouseAction());
-
-			if (playerColors[i].equals("RED")) {
-
-			}
-
-			playerColors[i].setBounds(530, 360 + i * 40, 100, 30);
+	
+			playerColors[i].setBounds(590, 360 + i * 60, 100, 30);
 			playerColors[i].setVisible(false);
-
+	
 			pnlPlayerInfo.add(playerLabels[i]);
 			pnlPlayerInfo.add(playerTf[i]);
 			pnlPlayerInfo.add(playerColors[i]);
 		}
 	}
+	
 
 	/**
 	 * Buttonlistener class, listens for clicks.
