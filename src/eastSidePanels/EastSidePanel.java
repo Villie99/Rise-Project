@@ -3,8 +3,11 @@ package eastSidePanels;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 import player.Player;
@@ -22,6 +25,8 @@ public class EastSidePanel extends JPanel {
 	private PlayerList playerList;
 	private JTabbedPane tab;
 	private PlayerInfoPanel playerInfoPnl;
+	private JTextArea textAreaScores; // New label
+
 
 	private int currentPlayer = 0;
 
@@ -43,15 +48,28 @@ public class EastSidePanel extends JPanel {
 		setLayout(null);
 		UIManager.put("TabbedPane.contentOpaque", false);
 		UIManager.put("TabbedPane.selected", Color.cyan);
-
+	
 		tab = new JTabbedPane();
-
-		tab.setBounds(0, 0, 355, 860);
+		tab.setBounds(0, 0, 355, 660); // Increased height to make more space for lblScores
 		tab.setBackground(new Color(0, 0, 0));
+	
+		textAreaScores = new JTextArea("Scores");
+		textAreaScores.setBounds(10, 500, 450, 450); // Adjusted bounds for textAreaScores
+		textAreaScores.setForeground(Color.white);
+		textAreaScores.setBackground(Color.black);
+		textAreaScores.setEditable(false); // Make it non-editable
+		textAreaScores.setLineWrap(true); // Enable line wrapping
+		textAreaScores.setWrapStyleWord(true); // Wrap at word boundaries
 
+
+		add(textAreaScores);
+		
+	
 		add(tab);
 
+
 	}
+	
 
 	/**
 	 * this method adds tabs according to the amount of players
@@ -66,7 +84,6 @@ public class EastSidePanel extends JPanel {
 			playerInfoPnl.setOpaque(false);
 			tab.addTab("Player " + (i + 1), playerInfoPnl);
 			tab.setOpaque(false);
-
 		}
 
 		tab.setSelectedIndex(currentPlayer);
@@ -97,11 +114,32 @@ public class EastSidePanel extends JPanel {
 		tab.setForeground(Color.white);
 		tab.setBackground(new Color(157, 0, 0));
 		tab.setBackgroundAt(currentPlayer, new Color(0, 157, 0));
+
 	}
 	
 
 	public int getTab() {
 		return currentPlayer;
 	}
+
+	public void setScoresText(String scoresText) {
+		textAreaScores.setText(scoresText);
+	}
+
+	public void updateScores() {
+		StringBuilder scoresText = new StringBuilder("Scores");
+	
+		for (int i = 0; i < playerList.getLength(); i++) {
+			Player currentPlayer = playerList.getPlayerFromIndex(i);
+			scoresText.append("\nPlayer").append(i + 1).append("\n"); // Add player label
+			scoresText.append("Net Worth: ").append(currentPlayer.getNetWorth()).append("\n");
+			// Add any other information you want to display for each player
+		}
+	
+		setScoresText(scoresText.toString());
+	}
+	
+	
+	
 
 }

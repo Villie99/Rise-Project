@@ -109,4 +109,8 @@ public class PlayerInfoPanel extends JPanel {
 		return eastSidePanel;
 	}
 
+	public String getNetworthLabelText() {
+		return lblNetworth.getText();
+	}
+
 }

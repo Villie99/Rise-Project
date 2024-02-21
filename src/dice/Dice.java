@@ -56,6 +56,7 @@ public class Dice extends JPanel implements ActionListener {
 	 * @param playerList method used for updating the list of players 
 	 */
 	public void addPlayerList(PlayerList playerList) {
+		eastSidePnl.updateScores();
 
 		this.playerList = playerList;
 		
@@ -97,6 +98,7 @@ public class Dice extends JPanel implements ActionListener {
 	 */
 	public void initializePanel() {
 		
+		
 		setPreferredSize(new Dimension(650, 120));
 		setLayout(new FlowLayout());
 		setOpaque(false);
@@ -134,6 +136,8 @@ public class Dice extends JPanel implements ActionListener {
 	 * Action Listener that handles what happens if the buttons are pressed
 	 */
 	public void actionPerformed(ActionEvent e) {
+		eastSidePnl.updateScores();
+
 
 		if (e.getSource() == btnRollDice) {
 			int faceValueDiceOne = (int) (Math.random() * (7 - 1) + 1);
@@ -218,6 +222,8 @@ public class Dice extends JPanel implements ActionListener {
 
 			btnRollDice.setEnabled(false);
 
+
+
 		}
 
 		
@@ -228,6 +234,8 @@ public class Dice extends JPanel implements ActionListener {
 		 * If the player is not in jail they can roll the dice 
 		 */
 		if (e.getSource() == btnEndTurn) {
+			eastSidePnl.updateScores();
+
 
 			playerList.switchToNextPlayer();
 			
@@ -277,6 +285,8 @@ public class Dice extends JPanel implements ActionListener {
 	 * To free the prisoner
 	 */
 	public void activateRollDice() {
+		eastSidePnl.updateScores();
+
 		btnRollDice.setEnabled(true);
 		btnEndTurn.setEnabled(false);
 	}
@@ -285,6 +295,8 @@ public class Dice extends JPanel implements ActionListener {
 	 * Ends the turn if player is eliminated
 	 */
 	public void endTurnIfPlayerEliminated() {
+		eastSidePnl.updateScores();
+
 		btnRollDice.setEnabled(true);
 		btnEndTurn.setEnabled(false);
 	}
@@ -293,6 +305,8 @@ public class Dice extends JPanel implements ActionListener {
 	 * @param playerList
 	 */
 	public void setPlayerList(PlayerList playerList) {
+		eastSidePnl.updateScores();
+
 		this.playerList = playerList;
 	}
 	
@@ -321,6 +335,7 @@ public class Dice extends JPanel implements ActionListener {
 		}
 
 		public void run() {
+			eastSidePnl.updateScores();
 
 			for (int i = 0; i < getRoll(); i++) {
 				board.removePlayer(playerList.getActivePlayer());

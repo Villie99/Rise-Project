@@ -297,6 +297,7 @@ public class Player {
 	 * @param netWorth the netWorth to set
 	 */
 	public void setNetWorth(int netWorth) {
+		
 		this.netWorth = netWorth;
 	}
 
