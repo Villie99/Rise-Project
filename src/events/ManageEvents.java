@@ -310,7 +310,7 @@ public class ManageEvents {
 			if (player.getBalance() < tavern.getPrice()) {
 				return false;
 			} else {
-				propertyDialog(tavern, player);
+				tavernDialog(tavern, player);
 				return true;
 			}
 		}
@@ -364,47 +364,26 @@ public class ManageEvents {
 	}
 
 	/**
-	 * Method for a dialog if the player is able to purchase a property or tavern.
+	 * Method for a dialog if the player is able to purchase a property.
 	 * @param property in question.
 	 * @param player in question.
-	 * @autor Petter Carlsson & Villie Brandt
 	 */
-	public void propertyDialog(Tile property, Player player) {
-		if (property instanceof Property) {
-			Property tempProperty = (Property) property;
-			int yesOrNo = JOptionPane.showConfirmDialog(null,
-					tempProperty.getName() + "\n" + "Do you want to purchase this property for " + tempProperty.getPrice() + " GC",
-					"Decide your fate!", JOptionPane.YES_NO_OPTION);
+	public void propertyDialog(Property property, Player player) {
+		int yesOrNo = JOptionPane.showConfirmDialog(null,
+				property.getName() + "\n" + "Do you want to purchase this property for " + property.getPrice() + " GC",
+				"Decide your fate!", JOptionPane.YES_NO_OPTION);
 
-			if (yesOrNo == 0 && (tempProperty.getPrice() <= player.getBalance())) {
-				tempProperty.setOwner(player);
-				player.addNewProperty(tempProperty);
-				tempProperty.setPurchaseable(false);
-				player.decreaseBalace(tempProperty.getPrice());
-				westPanel.append(player.getName() + " purchased " + tempProperty.getName() + "\n");
-			}
-
-			else {
-				westPanel.append(player.getName() + " did not purchase " + tempProperty.getName() + "\n");
-			}
-		}
-		if (property instanceof Tavern) {
-			Tavern tempTavern = (Tavern) property;
-			int yesOrNo = JOptionPane.showConfirmDialog(null,
-					tempTavern.getName() + "\n" + "Do you want to purchase this property for " + tempTavern.getPrice() + " GC",
-					"Decide your fate!", JOptionPane.YES_NO_OPTION);
-
-		if (yesOrNo == 0 && (tempTavern.getPrice() <= player.getBalance())) {
-			tempTavern.setOwner(player);
-			player.addNewTavern(tempTavern);
-			tempTavern.setPurchaseable(false);
-			player.decreaseBalace(tempTavern.getPrice());
-			westPanel.append(player.getName() + " purchased " + tempTavern.getName() + "\n");
-		} else {
-			westPanel.append(player.getName() + " did not purchase " + tempTavern.getName() + "\n");
-		}
+		if (yesOrNo == 0 && (property.getPrice() <= player.getBalance())) {
+			property.setOwner(player);
+			player.addNewProperty(property);
+			property.setPurchaseable(false);
+			player.decreaseBalace(property.getPrice());
+			westPanel.append(player.getName() + " purchased " + property.getName() + "\n");
 		}
 
+		else {
+			westPanel.append(player.getName() + " did not purchase " + property.getName() + "\n");
+		}
 	}
 
 	/**
@@ -412,8 +391,6 @@ public class ManageEvents {
 	 * @param tavern, the to buy.
 	 * @param player, player who landed on the tavern.
 	 */
-
-	 /* 
 	public void tavernDialog(Tavern tavern, Player player) {
 		int yesOrNo = JOptionPane.showConfirmDialog(null, "Do you want to purchase this property?", "JOption",
 				JOptionPane.YES_NO_OPTION);
@@ -428,7 +405,6 @@ public class ManageEvents {
 			westPanel.append(player.getName() + " did not purchase " + tavern.getName() + "\n");
 		}
 	}
-	*/
 
 	/**
 	 * @return roll of the dice.

@@ -386,16 +386,13 @@ public class Player {
 	 * @param pos
 	 * @return
 	 * 
+	 * @author Petter Carlsson & Villie Brandt
 	 */
 	public Tile getProperty(int pos) {
 		return this.propertiesOwned.get(pos);
 	}
 
-	/**
-	 * Updates player rank
-	 * 
-	 * @author Petter Carlsson & Villie Brandt
-	 */
+
 	public void checkPlayerRank() {
 
 		int netWorth = getNetWorth();
@@ -425,47 +422,30 @@ public class Player {
 		}
 		
 	}
-
-	/**
-	 * Downgrades the player icon
-	 * 
-	 * @param playerRank
-	 * @return String value that shows what happens
-	 * 
-	 * @author Petter Carlsson & Villie Brandt
-	 */
-
 	public String rankIconDowngrade(PlayerRanks playerRank) {
 		String currentImage = getImage().toString();
 		switch (playerRank) {
 			case PlayerRanks.PEASANT:
 				if (currentImage.equals("images/playerRed.jpg")) { //Peasant bild
 					setIcon(new ImageIcon("images/playerRed.jpg")); // Knight bild
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
 					setIcon(new ImageIcon("images/playerMagenta.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerOrange.jpg")) {
 					setIcon(new ImageIcon("images/playerOrange.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerYellow.jpg")) {
 					setIcon(new ImageIcon("images/playerYellow.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerGreen.jpg")) {
 					setIcon(new ImageIcon("images/playerGreen.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerCyan.jpg")) {
 					setIcon(new ImageIcon("images/playerCyan.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Downgraded icon";
 					
 				}
 				break;
@@ -473,39 +453,33 @@ public class Player {
 			case PlayerRanks.KNIGHT:
 				if (currentImage.equals("images/playerRed.jpg")) { //filnamnet på lord bilden
 					setIcon(new ImageIcon("images/playerRed.jpg")); //filnmanet på knight builden
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
 					setIcon(new ImageIcon("images/playerMagenta.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerOrange.jpg")) {
 					setIcon(new ImageIcon("images/playerOrange.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerYellow.jpg")) {
 					setIcon(new ImageIcon("images/playerYellow.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerGreen.jpg")) {
 					setIcon(new ImageIcon("images/playerGreen.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerCyan.jpg")) {
 					setIcon(new ImageIcon("images/playerCyan.jpg"));
-					return "Downgraded icon";
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Downgraded icon";
 				}
 				break;
 
 			
 		}
-		return "Nothing happened";
+		
+		return null;
 	}
-	
+
 	
 	public String rankIconUpgrade(PlayerRanks playerRank) {
 		String currentImage = getImage().toString();
@@ -513,98 +487,77 @@ public class Player {
 			case PlayerRanks.KNIGHT:
 				if (currentImage.equals("images/playerRed.jpg")) {//Peasant bilden
 					setIcon(new ImageIcon("images/playerRed.jpg"));//Ny Knight Bild
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
 					setIcon(new ImageIcon("images/playerMagenta.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerOrange.jpg")) {
 					setIcon(new ImageIcon("images/playerOrange.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerYellow.jpg")) {
 					setIcon(new ImageIcon("images/playerYellow.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerGreen.jpg")) {
 					setIcon(new ImageIcon("images/playerGreen.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerCyan.jpg")) {
 					setIcon(new ImageIcon("images/playerCyan.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Upgraded icon";
 				}
 				break;
 	
 			case PlayerRanks.LORD:
 				if (currentImage.equals("images/playerRed.jpg")) { // Knight bilden
 					setIcon(new ImageIcon("images/playerRed.jpg"));//Lord Bilden
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
 					setIcon(new ImageIcon("images/playerMagenta.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerOrange.jpg")) {
 					setIcon(new ImageIcon("images/playerOrange.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerYellow.jpg")) {
 					setIcon(new ImageIcon("images/playerYellow.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerGreen.jpg")) {
 					setIcon(new ImageIcon("images/playerGreen.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerCyan.jpg")) {
 					setIcon(new ImageIcon("images/playerCyan.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Upgraded icon";
 				}
 				break;
 
 			case PlayerRanks.KINGS:
 				if (currentImage.equals("images/playerRed.jpg")) { // Lord bilden
 					setIcon(new ImageIcon("images/playerRed.jpg")); // King bilden
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerMagenta.jpg")) {
 					setIcon(new ImageIcon("images/playerMagenta.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerOrange.jpg")) {
 					setIcon(new ImageIcon("images/playerOrange.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerYellow.jpg")) {
 					setIcon(new ImageIcon("images/playerYellow.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerGreen.jpg")) {
 					setIcon(new ImageIcon("images/playerGreen.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerCyan.jpg")) {
 					setIcon(new ImageIcon("images/playerCyan.jpg"));
-					return "Upgraded icon";
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Upgraded icon";
 				}
 				break;
 		}
 		
-		return "Nothing happened";
+		return null;
 	}
 
 	/**
