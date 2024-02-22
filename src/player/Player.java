@@ -511,4 +511,8 @@ public class Player {
 		return playerColor;
 	}
 
+	public String getNameText() {
+		return name;
+	}
+
 }

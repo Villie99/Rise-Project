@@ -128,12 +128,12 @@ public class EastSidePanel extends JPanel {
 	}
 
 	public void updateScores() {
-		StringBuilder scoresText = new StringBuilder("Scores");
+		StringBuilder scoresText = new StringBuilder("Scores Leaderboard\n");
 	
 		for (int i = 0; i < playerList.getLength(); i++) {
 			Player currentPlayer = playerList.getPlayerFromIndex(i);
-			scoresText.append("\nPlayer").append(i + 1).append("\n"); // Add player label
-			scoresText.append("Net Worth: ").append(currentPlayer.getNetWorth()).append("\n");
+			scoresText.append(currentPlayer.getNameText()); // Add player label
+			scoresText.append(": Net Worth: ").append(currentPlayer.getNetWorth()).append("\n");
 			// Add any other information you want to display for each player
 		}
 	

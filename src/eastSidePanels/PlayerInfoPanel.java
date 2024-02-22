@@ -113,4 +113,8 @@ public class PlayerInfoPanel extends JPanel {
 		return lblNetworth.getText();
 	}
 
+	public String getPlayerNameText() {
+		return lblName.getText();
+	}
+
 }
