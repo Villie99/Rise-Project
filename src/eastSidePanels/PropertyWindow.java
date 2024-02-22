@@ -92,7 +92,9 @@ public class PropertyWindow extends JPanel {
 
 			new PropertyWindow();
 			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i, eastSidePanel);
-			tab.addTab("Property " + (i + 1), playerProperties);
+			String nameText = playerProperties.getLblNameText();
+
+			tab.addTab(nameText, playerProperties);
 			tab.setBackgroundAt(i, playerList.getPlayerFromIndex(getPlayerAt()).getProperty(i).getColor());
 
 		}

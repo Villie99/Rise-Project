@@ -378,4 +378,9 @@ public class PlayerProperties extends JPanel implements ActionListener {
 
 	}
 
+	public String getLblNameText() {
+		return lblName.getText();
+	}
+	
+
 }
