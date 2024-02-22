@@ -82,7 +82,8 @@ public class EastSidePanel extends JPanel {
 			new EastSidePanel();
 			playerInfoPnl = new PlayerInfoPanel(playerList, i, this);
 			playerInfoPnl.setOpaque(false);
-			tab.addTab("Player " + (i + 1), playerInfoPnl);
+			String name = playerList.getPlayerFromIndex(i).getName();
+			tab.addTab(name, playerInfoPnl);
 			tab.setOpaque(false);
 		}
 
