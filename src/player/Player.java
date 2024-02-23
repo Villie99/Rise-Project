@@ -297,6 +297,7 @@ public class Player {
 	 * @param netWorth the netWorth to set
 	 */
 	public void setNetWorth(int netWorth) {
+		
 		this.netWorth = netWorth;
 	}
 
@@ -385,230 +386,106 @@ public class Player {
 	 * 
 	 * @param pos
 	 * @return
-	 * 
 	 */
 	public Tile getProperty(int pos) {
 		return this.propertiesOwned.get(pos);
 	}
 
-	public Tile getTavern(int pos) {
-		return this.tavernsOwned.get(pos);
-	}
 
-	/**
-	 * Updates player rank
-	 * 
-	 * @author Petter Carlsson & Villie Brandt
-	 */
 	public void checkPlayerRank() {
 
-		int netWorth = getNetWorth();
-
-		if (netWorth >= 2000) {
+		if (getNetWorth() >= 2000) {
 			setPlayerRank(PlayerRanks.KNIGHT);
 			rankIconUpgrade(PlayerRanks.KNIGHT);
 		}
 
-		if (netWorth >= 4000) {
+		if (getNetWorth() >= 4000) {
 			setPlayerRank(PlayerRanks.LORD);
 			rankIconUpgrade(PlayerRanks.LORD);
 		}
-		if (netWorth >= 7500) {
+		if (getNetWorth() >= 7500) {
 			setPlayerRank(PlayerRanks.KINGS);
 			rankIconUpgrade(PlayerRanks.KINGS);
 		}
-
-		if (netWorth < 2000){
-			setPlayerRank(PlayerRanks.PEASANT);
-			rankIconDowngrade(playerRank.PEASANT);
-		}
-
-		if (netWorth < 4000 && netWorth >= 2000)  {
-			setPlayerRank(PlayerRanks.KNIGHT);
-			rankIconDowngrade(PlayerRanks.KNIGHT);
-		}
-		
 	}
 
-	/**
-	 * Downgrades the player icon
-	 * 
-	 * @param playerRank
-	 * @return String value that shows what happens
-	 * 
-	 * @author Petter Carlsson & Villie Brandt
-	 */
-
-	public String rankIconDowngrade(PlayerRanks playerRank) {
-		String currentImage = getImage().toString();
-		switch (playerRank) {
-			case PlayerRanks.PEASANT:
-				if (currentImage.equals("images/playerRedKnight.png")) { //Peasant bild
-					setIcon(new ImageIcon("images/playerRedPeasant.png")); // Knight bild
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerMagentaKnight.png")) {
-					setIcon(new ImageIcon("images/playerMagentaPeasant.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerOrangeKnight.png")) {
-					setIcon(new ImageIcon("images/playerOrangePeasant.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerYellowKnight.png")) {
-					setIcon(new ImageIcon("images/playerYellowPeasant.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerGreenKnight.png")) {
-					setIcon(new ImageIcon("images/playerGreenPeasant.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerCyanKnight.png")) {
-					setIcon(new ImageIcon("images/playerCyanPeasant.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerPurple.jpg")) {
-					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Downgraded icon";
-					
-				}
-				break;
-	
-			case PlayerRanks.KNIGHT:
-				if (currentImage.equals("images/playerRedLord.png")) { //filnamnet på lord bilden
-					setIcon(new ImageIcon("images/playerRedKnight.png")); //filnmanet på knight builden
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerMagentaLord.png")) {
-					setIcon(new ImageIcon("images/playerMagentaKnight.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerOrangeLord.png")) {
-					setIcon(new ImageIcon("images/playerOrangeKnight.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerYellowLord.png")) {
-					setIcon(new ImageIcon("images/playerYellowKnight.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerGreenLord.png")) {
-					setIcon(new ImageIcon("images/playerGreenKnight.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerCyanLord.png")) {
-					setIcon(new ImageIcon("images/playerCyanKnight.png"));
-					return "Downgraded icon";
-				}
-				if (currentImage.equals("images/playerPurple.jpg")) {
-					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Downgraded icon";
-				}
-				break;
-
-			
-		}
-		return "Nothing happened";
-	}
-	
-	
 	public String rankIconUpgrade(PlayerRanks playerRank) {
 		String currentImage = getImage().toString();
 		switch (playerRank) {
 			case PlayerRanks.KNIGHT:
-				if (currentImage.equals("images/playerRedPeasant.png")) {//Peasant bilden
-					setIcon(new ImageIcon("images/playerRedKnight.png"));//Ny Knight Bild
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerRed.jpg")) {
+					setIcon(new ImageIcon("images/playerRed.jpg"));//Ny Knight Bild
 				}
-				if (currentImage.equals("images/playerMagentaPeasant.png")) {
-					setIcon(new ImageIcon("images/playerMagentaKnight.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
 				}
-				if (currentImage.equals("images/playerOrangePeasant.png")) {
-					setIcon(new ImageIcon("images/playerOrangeKnight.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
 				}
-				if (currentImage.equals("images/playerYellowPeasant.png")) {
-					setIcon(new ImageIcon("images/playerYellowKnight.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
 				}
-				if (currentImage.equals("images/playerGreenPeasant.png")) {
-					setIcon(new ImageIcon("images/playerGreenKnight.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
 				}
-				if (currentImage.equals("images/playerCyanPeasant.png")) {
-					setIcon(new ImageIcon("images/playerCyanKnight.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Upgraded icon";
 				}
 				break;
 	
 			case PlayerRanks.LORD:
-				if (currentImage.equals("images/playerRedKnight.png")) { // Knight bilden
-					setIcon(new ImageIcon("images/playerRedLord.png"));//Lord Bilden
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerRed.jpg")) {
+					setIcon(new ImageIcon("images/playerRed.jpg"));
 				}
-				if (currentImage.equals("images/playerMagentaKnight.png")) {
-					setIcon(new ImageIcon("images/playerMagentaLord.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
 				}
-				if (currentImage.equals("images/playerOrangeKnight.png")) {
-					setIcon(new ImageIcon("images/playerOrangeLord.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
 				}
-				if (currentImage.equals("images/playerYellowKnight.png")) {
-					setIcon(new ImageIcon("images/playerYellowLord.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
 				}
-				if (currentImage.equals("images/playerGreenKnight.png")) {
-					setIcon(new ImageIcon("images/playerGreenLord.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
 				}
-				if (currentImage.equals("images/playerCyanKnight.png")) {
-					setIcon(new ImageIcon("images/playerCyanLord.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Upgraded icon";
 				}
 				break;
 
 			case PlayerRanks.KINGS:
-				if (currentImage.equals("images/playerRedLord.png")) { // Lord bilden
-					setIcon(new ImageIcon("images/playerRedKing.png")); // King bilden
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerRed.jpg")) {
+					setIcon(new ImageIcon("images/playerRed.jpg"));
 				}
-				if (currentImage.equals("images/playerMagentaLord.png")) {
-					setIcon(new ImageIcon("images/playerMagentaKing.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerMagenta.jpg")) {
+					setIcon(new ImageIcon("images/playerMagenta.jpg"));
 				}
-				if (currentImage.equals("images/playerOrangeLord.png")) {
-					setIcon(new ImageIcon("images/playerOrangeKing.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerOrange.jpg")) {
+					setIcon(new ImageIcon("images/playerOrange.jpg"));
 				}
-				if (currentImage.equals("images/playerYellowLord.png")) {
-					setIcon(new ImageIcon("images/playerYellowKing.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerYellow.jpg")) {
+					setIcon(new ImageIcon("images/playerYellow.jpg"));
 				}
-				if (currentImage.equals("images/playerGreenLord.png")) {
-					setIcon(new ImageIcon("images/playerGreenKing.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerGreen.jpg")) {
+					setIcon(new ImageIcon("images/playerGreen.jpg"));
 				}
-				if (currentImage.equals("images/playerCyanLord.png")) {
-					setIcon(new ImageIcon("images/playerCyanKing.png"));
-					return "Upgraded icon";
+				if (currentImage.equals("images/playerCyan.jpg")) {
+					setIcon(new ImageIcon("images/playerCyan.jpg"));
 				}
 				if (currentImage.equals("images/playerPurple.jpg")) {
 					setIcon(new ImageIcon("images/playerPurple.jpg"));
-					return "Upgraded icon";
 				}
 				break;
 		}
 		
-		return "Nothing happened";
+		return null;
 	}
 
 	/**
@@ -616,6 +493,10 @@ public class Player {
 	 */
 	public ArrayList<Property> getProperties() {
 		return this.propertiesOwned;
+	}
+
+	public void setProperties(ArrayList<Property> properties) {
+		this.propertiesOwned = properties;
 	}
 
 	/**
@@ -632,6 +513,10 @@ public class Player {
 	 */
 	public Color getPlayerColor() {
 		return playerColor;
+	}
+
+	public String getNameText() {
+		return name;
 	}
 
 }
