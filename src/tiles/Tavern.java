@@ -37,7 +37,7 @@ public class Tavern implements Tile{
 	}
 
 	public Color getColor() {
-		return color;
+		return null;
 	}
 	
 	public void setOwner(Player newOwner) {
