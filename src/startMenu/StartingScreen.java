@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -404,8 +405,30 @@ public class StartingScreen extends JFrame {
 			mainWindow.addPlayer(playerList);
 			mainWindow.startboard();
 			dispose();
-			Introduction intro = new Introduction();
+			//Introduction intro = new Introduction();
+			addScrollPaneToMainWindow();
 		}
+
+		private void addScrollPaneToMainWindow() {
+    // Assuming mainWindow is a JPanel or a component that you want to scroll
+    JScrollPane scrollPane = new JScrollPane(mainWindow);
+    
+    // Set additional scroll pane properties if needed
+    
+    // Create a new JFrame to hold the JScrollPane
+    JFrame scrollFrame = new JFrame("Scrollable Game Window");
+    scrollFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    // Set the JFrame to full screen
+    scrollFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    scrollFrame.setUndecorated(true);
+    
+    // Add the JScrollPane to the JFrame
+    scrollFrame.getContentPane().add(scrollPane);
+    
+    // Make sure the frame is visible
+    scrollFrame.setVisible(true);
+}
 		
 		/**
 		 * Creates the right amount of players.
