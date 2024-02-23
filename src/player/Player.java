@@ -495,6 +495,10 @@ public class Player {
 		return this.propertiesOwned;
 	}
 
+	public void setProperties(ArrayList<Property> properties) {
+		this.propertiesOwned = properties;
+	}
+
 	/**
 	 * @return all taverns owned by player
 	 */

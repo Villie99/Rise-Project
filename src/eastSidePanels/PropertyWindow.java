@@ -2,11 +2,15 @@ package eastSidePanels;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import player.Player;
 import player.PlayerList;
+import tiles.Property;
 
 /**
  * @author Muhammad Abdulkhuder, Aevan Dino.
@@ -86,7 +90,14 @@ public class PropertyWindow extends JPanel {
 
 		tab.setForeground(Color.white);
 
-		size = new int[playerList.getPlayerFromIndex(getPlayerAt()).getProperties().size()];
+		Player currPlayer = playerList.getPlayerFromIndex(getPlayerAt());
+
+		for (int i =0 ; i< currPlayer.getAmountOfTaverns(); i++){
+			currPlayer.addNewProperty(new Property(true));
+		}
+
+		size = new int[currPlayer.getProperties().size()];
+		
 
 		for (int i = 0; i < size.length; i++) {
 
@@ -98,6 +109,14 @@ public class PropertyWindow extends JPanel {
 			tab.setBackgroundAt(i, playerList.getPlayerFromIndex(getPlayerAt()).getProperty(i).getColor());
 
 		}
+
+		ArrayList<Property> properties = playerList.getPlayerFromIndex(getPlayerAt()).getProperties();
+		for (int i =0 ; i < properties.size(); i++){
+			if(properties.get(i).isTavern()){
+				properties.remove(i);
+			}
+		}
+		currPlayer.setProperties(properties);
 
 	}
 
