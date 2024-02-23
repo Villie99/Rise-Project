@@ -62,15 +62,15 @@ public class Property implements Tile {
 	}
 
 	public Property(Boolean isTavern) {
-        setName("Tavern");
-        setPrice(0);
-        setDefaultRent(0);
-        setRentPerLevel(0);
-        setColor(Color.BLACK);
-        purchaseable=true;
-        player = null;
-        this.img= new ImageIcon("tilePics/tavern.png");
-        this.levelPrice= 0;
+		setName("Tavern");
+		setPrice(0);
+		setDefaultRent(0);
+		setRentPerLevel(0);
+		setColor(color.BLACK);
+		purchaseable=false;
+		player = null;
+		this.img= new ImageIcon("tilePics/tavern.png");
+		this.levelPrice= 0;
     }
 	
 	public Boolean isTavern() {

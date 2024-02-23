@@ -143,6 +143,9 @@ public class Dice extends JPanel implements ActionListener {
 			int faceValueDiceOne = (int) (Math.random() * (7 - 1) + 1);
 			int faceValueDiceTwo = (int) (Math.random() * (7 - 1) + 1);
 
+			faceValueDiceOne = 12;
+			faceValueDiceTwo = 0;
+
 			switch (faceValueDiceOne) {
 			case 1:
 				faceToShow = new ImageIcon("DicePictures/faceValue1White.png");

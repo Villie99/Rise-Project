@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import eastSidePanels.PropertyWindow;
 import messageGui.WinGui;
 import tiles.Property;
 import tiles.Tavern;
@@ -38,6 +39,8 @@ public class Player {
 	private ArrayList<Tile> tilesOwned;
 
 	private ArrayList<Tavern> tavernsOwned;
+	private int owned =0;
+	private boolean updateTavernNbr = false;
 
 	/**
 	 * Constructor for adding a new player, new players are created by the
@@ -350,7 +353,14 @@ public class Player {
 	 * @param newTavern add a new Tavern to a user
 	 */
 	public void addNewTavern(Tavern newTavern) {
+		updateTavernNbr = true; 
+		owned++;
 		this.tavernsOwned.add(newTavern);
+	}
+
+	public int getOwned(){
+		System.out.println("player" + name + " OWNED Tavs " + owned);
+		return owned;
 	}
 
 	/**
@@ -359,6 +369,7 @@ public class Player {
 	 * @return amount of taverns
 	 */
 	public int getAmountOfTaverns() {
+		System.out.println("TAVERNS OWNED " + tavernsOwned.size());
 		return tavernsOwned.size();
 	}
 
@@ -517,6 +528,13 @@ public class Player {
 
 	public String getNameText() {
 		return name;
+	}
+
+	public boolean isUpdateTavernNbr() {
+		return updateTavernNbr;
+	}
+	public void setUpdateTavernNbr(boolean updateTavernNbr) {
+		this.updateTavernNbr = updateTavernNbr;
 	}
 
 }

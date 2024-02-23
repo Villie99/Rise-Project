@@ -86,37 +86,56 @@ public class PropertyWindow extends JPanel {
 	 */
 	public void addtabs() {
 
+		Player currPlayer = playerList.getPlayerFromIndex(getPlayerAt());
+
+		if (currPlayer.isUpdateTavernNbr()) {
+			currPlayer.setUpdateTavernNbr(false);
+			addTav();
+		}
+
 		tab.removeAll();
 
 		tab.setForeground(Color.white);
 
-		Player currPlayer = playerList.getPlayerFromIndex(getPlayerAt());
 
-		for (int i =0 ; i< currPlayer.getAmountOfTaverns(); i++){
-			currPlayer.addNewProperty(new Property(true));
-		}
-
-		size = new int[currPlayer.getProperties().size()];
+		ArrayList<Property> properties = currPlayer.getProperties();
 		
-
-		for (int i = 0; i < size.length; i++) {
+		for (int i = 0; i < properties.size(); i++) {
 
 			new PropertyWindow();
 			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i, eastSidePanel);
 			String nameText = playerProperties.getLblNameText();
 
 			tab.addTab(nameText, playerProperties);
-			tab.setBackgroundAt(i, playerList.getPlayerFromIndex(getPlayerAt()).getProperty(i).getColor());
-
+			tab.setBackgroundAt(i, properties.get(i).getColor());
 		}
 
-		ArrayList<Property> properties = playerList.getPlayerFromIndex(getPlayerAt()).getProperties();
-		for (int i =0 ; i < properties.size(); i++){
-			if(properties.get(i).isTavern()){
-				properties.remove(i);
-			}
+	}
+
+	public void addTav() {
+
+		tab.removeAll();
+
+		tab.setForeground(Color.white);
+
+		Player currPlayer = playerList.getPlayerFromIndex(getPlayerAt());
+
+		ArrayList<Property> properties = currPlayer.getProperties();
+
+		for (int i =0 ; i< currPlayer.getOwned(); i++){
+			properties.add(new Property(true));
 		}
-		currPlayer.setProperties(properties);
+		
+		for (int i = 0; i < properties.size(); i++) {
+
+			new PropertyWindow();
+			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i, eastSidePanel);
+			String nameText = playerProperties.getLblNameText();
+
+			tab.addTab(nameText, playerProperties);
+			tab.setBackgroundAt(i, properties.get(i).getColor());
+		}
+
 
 	}
 
