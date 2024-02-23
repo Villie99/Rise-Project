@@ -323,15 +323,18 @@ public class ManageEvents {
 	 * @param player in jail
 	 */
 	public void jailEvent(Tile tile, Player player) {
-		if (player.isPlayerInJail() == true && (player.getJailCounter()) < 2) {
-			westPanel.append(player.getName() + " is in jail for " + (2 - player.getJailCounter()) + " more turns\n");
+
+		if (player.isPlayerInJail() == true && (player.getJailCounter()) < 5) {
+			westPanel.append(player.getName() + " is in jail for " + (5 - player.getJailCounter()) + " more turns\n");
 			player.increaseJailCounter();
-			if (player.getBalance() > (player.getJailCounter() * 50)) {
+			
+
+		if (player.getBalance() > (player.getJailCounter() * 50)) {
 				jailDialog(player);
 			} else {
 				JOptionPane.showMessageDialog(null, "You can not afford the bail");
 			}
-		} else if (player.getJailCounter() >= 2) {
+		} else if (player.getJailCounter() >= 5) {
 			player.setPlayerIsInJail(false);
 			player.setJailCounter(0);
 			dice.activateRollDice();
@@ -349,7 +352,7 @@ public class ManageEvents {
 		player.setPositionInSpecificIndex(10);
 		board.setPlayer(player);
 		JOptionPane.showMessageDialog(null, player.getName() + " got in jail.");
-		westPanel.append(player.getName() + " is in jail for " + (2 - player.getJailCounter()) + " more turns\n");
+		westPanel.append(player.getName() + " is in jail for " + (5 - player.getJailCounter()) + " more turns\n");
 	}
 
 	/**
@@ -428,7 +431,7 @@ public class ManageEvents {
 	 */
 	public void jailDialog(Player player) {
 		int yesOrNo = JOptionPane.showConfirmDialog(null,
-				"Do you want to pay the bail\nWhich is " + (player.getJailCounter() * 50) + " GC?", "JOption",
+				player.getName()  + " , do you want to pay the bail\nWhich is " + (player.getJailCounter() * 50) + " GC?", "JOption",
 				JOptionPane.YES_NO_OPTION);
 		int totalBail = player.getJailCounter() * 50;
 		if (yesOrNo == 0 && (totalBail <= player.getBalance())) {
@@ -437,7 +440,9 @@ public class ManageEvents {
 			westPanel.append(player.getName() + " paid the bail and\ngot free from jail\n");
 			dice.activateRollDice();
 		} else {
-			westPanel.append(player.getName() + " did not pay tha bail\n and is still in jail\n");
+			westPanel.append(player.getName() + " did not pay tha bail\n and is still in jail\n" +
+			"hit equals to get free\n");
+			dice.attemptSuccededToGetOutOfJail();
 		}
 	}
 	
