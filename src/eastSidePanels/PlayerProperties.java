@@ -127,21 +127,12 @@ public class PlayerProperties extends JPanel implements ActionListener {
 		btnTrade.setFont(font);
 
 		BufferedImage img = null;
-		BufferedImage imgTavern = null;
 		try {
 			img = ImageIO.read(new File(
 					playerList.getPlayerFromIndex(playerAtI).getProperty(propertyAtI).getPicture().toString()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		/* 
-		try {
-			imgTavern = ImageIO.read(new File(
-					playerList.getPlayerFromIndex(playerAtI).getTavern(propertyAtI).getPicture().toString()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
 
 		Image resizedImg = img.getScaledInstance(lblPicture.getWidth(), lblPicture.getHeight(), Image.SCALE_SMOOTH);
 
@@ -386,5 +377,10 @@ public class PlayerProperties extends JPanel implements ActionListener {
 		}
 
 	}
+
+	public String getLblNameText() {
+		return lblName.getText();
+	}
+	
 
 }

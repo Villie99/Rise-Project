@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import board.Board;
@@ -49,6 +50,7 @@ public class Dice extends JPanel implements ActionListener {
 	private int diceWidth = (screenSize.width) / 20;
 	private int diceHeight = (screenSize.height) / 10;
 	private int roll;
+	private boolean tryGetOutOfJail = false;
 
 	
 	
@@ -56,6 +58,7 @@ public class Dice extends JPanel implements ActionListener {
 	 * @param playerList method used for updating the list of players 
 	 */
 	public void addPlayerList(PlayerList playerList) {
+		eastSidePnl.updateScores();
 
 		this.playerList = playerList;
 		
@@ -97,6 +100,7 @@ public class Dice extends JPanel implements ActionListener {
 	 */
 	public void initializePanel() {
 		
+		
 		setPreferredSize(new Dimension(650, 120));
 		setLayout(new FlowLayout());
 		setOpaque(false);
@@ -128,16 +132,22 @@ public class Dice extends JPanel implements ActionListener {
 		btnEndTurn.setEnabled(false);
 	}
 
-	
+	private boolean firstround = true;
 
 	/**
 	 * Action Listener that handles what happens if the buttons are pressed
 	 */
 	public void actionPerformed(ActionEvent e) {
+		eastSidePnl.updateScores();
+
 
 		if (e.getSource() == btnRollDice) {
 			int faceValueDiceOne = (int) (Math.random() * (7 - 1) + 1);
 			int faceValueDiceTwo = (int) (Math.random() * (7 - 1) + 1);
+
+
+			//faceValueDiceOne = 12;
+			//faceValueDiceTwo = 0;
 
 			switch (faceValueDiceOne) {
 			case 1:
@@ -195,6 +205,32 @@ public class Dice extends JPanel implements ActionListener {
 				break;
 			}
 
+
+			/*
+			//For testing purposes going to jail on first roll
+			if(firstround){
+				faceValueDiceOne = 25;
+				faceValueDiceTwo = 5;
+				firstround = false;
+			}
+			*/
+
+			if(tryGetOutOfJail){
+				tryGetOutOfJail=false;
+				if(faceValueDiceOne == faceValueDiceTwo){
+					playerList.getActivePlayer().setJailCounter(0);
+					playerList.getActivePlayer().setPlayerIsInJail(false);
+					playerList.getActivePlayer().setPlayerIsInJail(false);
+					JOptionPane.showMessageDialog(null, playerList.getActivePlayer().getName() + " hit equals and got free from jail\n");
+					this.activateRollDice();
+				} else{
+					JOptionPane.showMessageDialog(null, playerList.getActivePlayer().getName() + " is still in jail!");
+					btnRollDice.setEnabled(false);
+					btnEndTurn.setEnabled(true);
+				}
+
+			} else{
+
 			if (faceValueDiceOne == faceValueDiceTwo) {
 				setRoll(((faceValueDiceOne + faceValueDiceTwo) * 2));
 				westSidePnl.append(playerList.getActivePlayer().getName() + " Rolled a dubble: " + getRoll() + "\n");
@@ -202,6 +238,7 @@ public class Dice extends JPanel implements ActionListener {
 				setRoll(((faceValueDiceOne + faceValueDiceTwo)));
 				westSidePnl.append(playerList.getActivePlayer().getName() + " Rolled a: " + getRoll() + "\n");
 			}
+		
 			resizedImage = faceToShow.getImage().getScaledInstance(diceWidth, diceHeight, Image.SCALE_SMOOTH);
 			showDice = new ImageIcon(resizedImage);
 			lblDice2.setIcon(showDice);
@@ -217,6 +254,10 @@ public class Dice extends JPanel implements ActionListener {
 			eastSidePnl.addPlayerList(playerList);
 
 			btnRollDice.setEnabled(false);
+		}
+
+			
+		
 
 		}
 
@@ -228,6 +269,8 @@ public class Dice extends JPanel implements ActionListener {
 		 * If the player is not in jail they can roll the dice 
 		 */
 		if (e.getSource() == btnEndTurn) {
+			eastSidePnl.updateScores();
+
 
 			playerList.switchToNextPlayer();
 			
@@ -277,6 +320,8 @@ public class Dice extends JPanel implements ActionListener {
 	 * To free the prisoner
 	 */
 	public void activateRollDice() {
+		eastSidePnl.updateScores();
+
 		btnRollDice.setEnabled(true);
 		btnEndTurn.setEnabled(false);
 	}
@@ -285,6 +330,8 @@ public class Dice extends JPanel implements ActionListener {
 	 * Ends the turn if player is eliminated
 	 */
 	public void endTurnIfPlayerEliminated() {
+		eastSidePnl.updateScores();
+
 		btnRollDice.setEnabled(true);
 		btnEndTurn.setEnabled(false);
 	}
@@ -293,6 +340,8 @@ public class Dice extends JPanel implements ActionListener {
 	 * @param playerList
 	 */
 	public void setPlayerList(PlayerList playerList) {
+		eastSidePnl.updateScores();
+
 		this.playerList = playerList;
 	}
 	
@@ -321,6 +370,7 @@ public class Dice extends JPanel implements ActionListener {
 		}
 
 		public void run() {
+			eastSidePnl.updateScores();
 
 			for (int i = 0; i < getRoll(); i++) {
 				board.removePlayer(playerList.getActivePlayer());
@@ -358,5 +408,13 @@ public class Dice extends JPanel implements ActionListener {
 			westSidePnl.append("Passed Go and received 200 GC\n");
 			playerList.getActivePlayer().resetPassedGo();
 		}
+	}
+
+
+	public void attemptSuccededToGetOutOfJail() {
+		tryGetOutOfJail = true;
+		btnRollDice.setEnabled(true);
+		btnEndTurn.setEnabled(false);
+
 	}
 }

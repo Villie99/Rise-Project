@@ -60,7 +60,22 @@ public class Property implements Tile {
 				+ "Total rent:\t" 		+ getTotalRent();
 		return info;
 	}
+
+	public Property(Boolean isTavern) {
+		setName("Tavern");
+		setPrice(0);
+		setDefaultRent(0);
+		setRentPerLevel(0);
+		setColor(color.BLACK);
+		purchaseable=false;
+		player = null;
+		this.img= new ImageIcon("tilePics/tavern.png");
+		this.levelPrice= 0;
+    }
 	
+	public Boolean isTavern() {
+		return name.equals("Tavern");
+	}
 	
 	public String getTitle() {
 		return name;

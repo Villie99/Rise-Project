@@ -2,11 +2,15 @@ package eastSidePanels;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import player.Player;
 import player.PlayerList;
+import tiles.Property;
 
 /**
  * @author Muhammad Abdulkhuder, Aevan Dino.
@@ -82,20 +86,56 @@ public class PropertyWindow extends JPanel {
 	 */
 	public void addtabs() {
 
+		Player currPlayer = playerList.getPlayerFromIndex(getPlayerAt());
+
+		if (currPlayer.isUpdateTavernNbr()) {
+			currPlayer.setUpdateTavernNbr(false);
+			addTav();
+		}
+
 		tab.removeAll();
 
 		tab.setForeground(Color.white);
 
-		size = new int[playerList.getPlayerFromIndex(getPlayerAt()).getProperties().size()];
 
-		for (int i = 0; i < size.length; i++) {
+		ArrayList<Property> properties = currPlayer.getProperties();
+		
+		for (int i = 0; i < properties.size(); i++) {
 
 			new PropertyWindow();
 			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i, eastSidePanel);
-			tab.addTab("Property " + (i + 1), playerProperties);
-			tab.setBackgroundAt(i, playerList.getPlayerFromIndex(getPlayerAt()).getProperty(i).getColor());
+			String nameText = playerProperties.getLblNameText();
 
+			tab.addTab(nameText, playerProperties);
+			tab.setBackgroundAt(i, properties.get(i).getColor());
 		}
+
+	}
+
+	public void addTav() {
+
+		tab.removeAll();
+
+		tab.setForeground(Color.white);
+
+		Player currPlayer = playerList.getPlayerFromIndex(getPlayerAt());
+
+		ArrayList<Property> properties = currPlayer.getProperties();
+
+		for (int i =0 ; i< currPlayer.getOwned(); i++){
+			properties.add(new Property(true));
+		}
+		
+		for (int i = 0; i < properties.size(); i++) {
+
+			new PropertyWindow();
+			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i, eastSidePanel);
+			String nameText = playerProperties.getLblNameText();
+
+			tab.addTab(nameText, playerProperties);
+			tab.setBackgroundAt(i, properties.get(i).getColor());
+		}
+
 
 	}
 

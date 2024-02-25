@@ -310,7 +310,7 @@ public class ManageEvents {
 			if (player.getBalance() < tavern.getPrice()) {
 				return false;
 			} else {
-				propertyDialog(tavern, player);
+				tavernDialog(tavern, player);
 				return true;
 			}
 		}
@@ -323,15 +323,18 @@ public class ManageEvents {
 	 * @param player in jail
 	 */
 	public void jailEvent(Tile tile, Player player) {
-		if (player.isPlayerInJail() == true && (player.getJailCounter()) < 2) {
-			westPanel.append(player.getName() + " is in jail for " + (2 - player.getJailCounter()) + " more turns\n");
+
+		if (player.isPlayerInJail() == true && (player.getJailCounter()) < 5) {
+			westPanel.append(player.getName() + " is in jail for " + (5 - player.getJailCounter()) + " more turns\n");
 			player.increaseJailCounter();
-			if (player.getBalance() > (player.getJailCounter() * 50)) {
+			
+
+		if (player.getBalance() > (player.getJailCounter() * 50)) {
 				jailDialog(player);
 			} else {
 				JOptionPane.showMessageDialog(null, "You can not afford the bail");
 			}
-		} else if (player.getJailCounter() >= 2) {
+		} else if (player.getJailCounter() >= 5) {
 			player.setPlayerIsInJail(false);
 			player.setJailCounter(0);
 			dice.activateRollDice();
@@ -349,7 +352,7 @@ public class ManageEvents {
 		player.setPositionInSpecificIndex(10);
 		board.setPlayer(player);
 		JOptionPane.showMessageDialog(null, player.getName() + " got in jail.");
-		westPanel.append(player.getName() + " is in jail for " + (2 - player.getJailCounter()) + " more turns\n");
+		westPanel.append(player.getName() + " is in jail for " + (5 - player.getJailCounter()) + " more turns\n");
 	}
 
 	/**
@@ -364,47 +367,26 @@ public class ManageEvents {
 	}
 
 	/**
-	 * Method for a dialog if the player is able to purchase a property or tavern.
+	 * Method for a dialog if the player is able to purchase a property.
 	 * @param property in question.
 	 * @param player in question.
-	 * @autor Petter Carlsson & Villie Brandt
 	 */
-	public void propertyDialog(Tile property, Player player) {
-		if (property instanceof Property) {
-			Property tempProperty = (Property) property;
-			int yesOrNo = JOptionPane.showConfirmDialog(null,
-					tempProperty.getName() + "\n" + "Do you want to purchase this property for " + tempProperty.getPrice() + " GC",
-					"Decide your fate!", JOptionPane.YES_NO_OPTION);
+	public void propertyDialog(Property property, Player player) {
+		int yesOrNo = JOptionPane.showConfirmDialog(null,
+				property.getName() + "\n" + "Do you want to purchase this property for " + property.getPrice() + " GC",
+				"Decide your fate!", JOptionPane.YES_NO_OPTION);
 
-			if (yesOrNo == 0 && (tempProperty.getPrice() <= player.getBalance())) {
-				tempProperty.setOwner(player);
-				player.addNewProperty(tempProperty);
-				tempProperty.setPurchaseable(false);
-				player.decreaseBalace(tempProperty.getPrice());
-				westPanel.append(player.getName() + " purchased " + tempProperty.getName() + "\n");
-			}
-
-			else {
-				westPanel.append(player.getName() + " did not purchase " + tempProperty.getName() + "\n");
-			}
-		}
-		if (property instanceof Tavern) {
-			Tavern tempTavern = (Tavern) property;
-			int yesOrNo = JOptionPane.showConfirmDialog(null,
-					tempTavern.getName() + "\n" + "Do you want to purchase this property for " + tempTavern.getPrice() + " GC",
-					"Decide your fate!", JOptionPane.YES_NO_OPTION);
-
-		if (yesOrNo == 0 && (tempTavern.getPrice() <= player.getBalance())) {
-			tempTavern.setOwner(player);
-			player.addNewTavern(tempTavern);
-			tempTavern.setPurchaseable(false);
-			player.decreaseBalace(tempTavern.getPrice());
-			westPanel.append(player.getName() + " purchased " + tempTavern.getName() + "\n");
-		} else {
-			westPanel.append(player.getName() + " did not purchase " + tempTavern.getName() + "\n");
-		}
+		if (yesOrNo == 0 && (property.getPrice() <= player.getBalance())) {
+			property.setOwner(player);
+			player.addNewProperty(property);
+			property.setPurchaseable(false);
+			player.decreaseBalace(property.getPrice());
+			westPanel.append(player.getName() + " purchased " + property.getName() + "\n");
 		}
 
+		else {
+			westPanel.append(player.getName() + " did not purchase " + property.getName() + "\n");
+		}
 	}
 
 	/**
@@ -412,8 +394,6 @@ public class ManageEvents {
 	 * @param tavern, the to buy.
 	 * @param player, player who landed on the tavern.
 	 */
-
-	 /* 
 	public void tavernDialog(Tavern tavern, Player player) {
 		int yesOrNo = JOptionPane.showConfirmDialog(null, "Do you want to purchase this property?", "JOption",
 				JOptionPane.YES_NO_OPTION);
@@ -428,7 +408,6 @@ public class ManageEvents {
 			westPanel.append(player.getName() + " did not purchase " + tavern.getName() + "\n");
 		}
 	}
-	*/
 
 	/**
 	 * @return roll of the dice.
@@ -452,7 +431,7 @@ public class ManageEvents {
 	 */
 	public void jailDialog(Player player) {
 		int yesOrNo = JOptionPane.showConfirmDialog(null,
-				"Do you want to pay the bail\nWhich is " + (player.getJailCounter() * 50) + " GC?", "JOption",
+				player.getName()  + " , do you want to pay the bail\nWhich is " + (player.getJailCounter() * 50) + " GC?", "JOption",
 				JOptionPane.YES_NO_OPTION);
 		int totalBail = player.getJailCounter() * 50;
 		if (yesOrNo == 0 && (totalBail <= player.getBalance())) {
@@ -461,7 +440,9 @@ public class ManageEvents {
 			westPanel.append(player.getName() + " paid the bail and\ngot free from jail\n");
 			dice.activateRollDice();
 		} else {
-			westPanel.append(player.getName() + " did not pay tha bail\n and is still in jail\n");
+			westPanel.append(player.getName() + " did not pay tha bail\n and is still in jail\n" +
+			"hit equals to get free\n");
+			dice.attemptSuccededToGetOutOfJail();
 		}
 	}
 	

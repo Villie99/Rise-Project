@@ -22,6 +22,8 @@ public class PlayerList {
 	private ImageIcon playerIcon = new ImageIcon(); 
 	private int currentPlayer = 0; 
 	private int playerListLength = 0;
+
+	
 	
 	
 	/**
