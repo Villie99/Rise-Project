@@ -54,7 +54,7 @@ public class EastSidePanel extends JPanel {
 		tab.setBackground(new Color(0, 0, 0));
 	
 		textAreaScores = new JTextArea("Scores");
-		textAreaScores.setBounds(10, 500, 450, 450); // Adjusted bounds for textAreaScores
+		textAreaScores.setBounds(10, 750, 450, 450); // Adjusted bounds for textAreaScores
 		textAreaScores.setForeground(Color.white);
 		textAreaScores.setBackground(Color.black);
 		textAreaScores.setEditable(false); // Make it non-editable
