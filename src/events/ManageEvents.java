@@ -353,7 +353,6 @@ public class ManageEvents {
 		player.setPositionInSpecificIndex(10);
 		board.setPlayer(player);
 		JOptionPane.showMessageDialog(null, player.getName() + " got in jail.");
-		//westPanel.append(player.getName() + " is in jail for " + (5 - player.getJailCounter()) + " more turns\n");
 	}
 
 	/**
