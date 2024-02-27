@@ -52,6 +52,8 @@ public class Dice extends JPanel implements ActionListener {
 	private int roll;
 	private boolean tryGetOutOfJail = false;
 
+	private boolean firstroundDeterminism = true; //For testing purposes, set to false to disable 
+
 	
 	
 	/**
@@ -132,8 +134,6 @@ public class Dice extends JPanel implements ActionListener {
 		btnEndTurn.setEnabled(false);
 	}
 
-	private boolean firstround = true;
-
 	/**
 	 * Action Listener that handles what happens if the buttons are pressed
 	 */
@@ -206,14 +206,14 @@ public class Dice extends JPanel implements ActionListener {
 			}
 
 
-			/*
+			
 			//For testing purposes going to jail on first roll
-			if(firstround){
+			if(firstroundDeterminism){
 				faceValueDiceOne = 25;
 				faceValueDiceTwo = 5;
-				firstround = false;
+				firstroundDeterminism = false;
 			}
-			*/
+			
 
 			if(tryGetOutOfJail){
 				tryGetOutOfJail=false;

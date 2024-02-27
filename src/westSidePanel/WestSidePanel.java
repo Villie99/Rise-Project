@@ -1,8 +1,7 @@
 package westSidePanel;
 
-import java.awt.BorderLayout;
 import java.awt.*;
-import javax.swing.BorderFactory;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.text.DefaultCaret;
@@ -81,7 +80,7 @@ public class WestSidePanel extends JPanel {
 		 * HistoryPanel
 		 */
 		pnlHistory = new JPanel();
-		txtMessage.setFont(new Font("Gabriola", Font.BOLD, 18));
+		txtMessage.setFont(new Font("Gabriola", Font.BOLD, 12));
 		txtMessage.setMargin(new Insets(10, 10, 10, 10));
 		txtMessage.setEditable(false);
 		txtMessage.setForeground(new Color(71, 60, 50, 225));
