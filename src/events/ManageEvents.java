@@ -439,7 +439,7 @@ public class ManageEvents {
 			player.setJailCounter(0);
 			player.setPlayerIsInJail(false);
 			westPanel.append(player.getName() + " paid the bail: got free from jail\n");
-			dice.activateRollDice();
+			//dice.activateRollDice();
 		} else {
 			westPanel.append(player.getName() + " did not pay tha bail: remains in jail\n");
 			dice.attemptToGetOutOfJail();

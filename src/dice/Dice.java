@@ -225,12 +225,12 @@ public class Dice extends JPanel implements ActionListener {
 				lblDice2.setIcon(showDice);
 
 				if(faceValueDiceOne == faceValueDiceTwo){
-					westSidePnl.append(playerList.getActivePlayer().getName() +" you got free from jail\n");
+					westSidePnl.append(playerList.getActivePlayer().getName() +" you got FREE from jail!\n");
 					playerList.getActivePlayer().setPlayerIsInJail(false);
 					playerList.getActivePlayer().setJailCounter(0); //High jailcounter above 5 will automatically reset for next round
 				} 
 				if (faceValueDiceOne != faceValueDiceTwo){
-					westSidePnl.append(playerList.getActivePlayer().getName() +" did NOT hit equals and remains in jail\n");
+					westSidePnl.append(playerList.getActivePlayer().getName() +" did NOT hit equals: remains in jail\n");
 				}
 
 				btnRollDice.setEnabled(false);
