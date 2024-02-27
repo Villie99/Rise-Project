@@ -57,6 +57,7 @@ public class ManageEvents {
 	 */
 	public ManageEvents(Board board, PlayerList playerList, WestSidePanel pnlWest, Dice dice, EastSidePanel eastPanel) {
 		this.dice = dice;
+		dice.setWestPanel(pnlWest);
 		this.westPanel = pnlWest;
 		this.board = board;
 		this.playerList = playerList;
@@ -440,9 +441,8 @@ public class ManageEvents {
 			westPanel.append(player.getName() + " paid the bail and\ngot free from jail\n");
 			dice.activateRollDice();
 		} else {
-			westPanel.append(player.getName() + " did not pay tha bail\n and is still in jail\n" +
-			"hit equals to get free\n");
-			dice.attemptSuccededToGetOutOfJail();
+			westPanel.append(player.getName() + " did not pay tha bail\n and is still in jail\n");
+			dice.attemptToGetOutOfJail();
 		}
 	}
 	

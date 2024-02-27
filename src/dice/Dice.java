@@ -50,7 +50,6 @@ public class Dice extends JPanel implements ActionListener {
 	private int diceWidth = (screenSize.width) / 20;
 	private int diceHeight = (screenSize.height) / 10;
 	private int roll;
-	private boolean tryGetOutOfJail = false;
 
 	private boolean firstroundDeterminism = true; //For testing purposes, set to false to disable 
 
@@ -215,19 +214,35 @@ public class Dice extends JPanel implements ActionListener {
 			}
 			
 
-			if(tryGetOutOfJail){
-				tryGetOutOfJail=false;
+			/**
+			 * This if statement checks if the player is in jail
+			 * and gives them a chance to play out of jail
+			 * If scoring equals on the dices the jailcounter will be set to very high 
+			 * which means the player will be automatically released from jail in the next round
+			 */
+			if(playerList.getActivePlayer().isPlayerInJail() == true){
+				resizedImage = faceToShow.getImage().getScaledInstance(diceWidth, diceHeight, Image.SCALE_SMOOTH);
+				showDice = new ImageIcon(resizedImage);
+				lblDice2.setIcon(showDice);
+
 				if(faceValueDiceOne == faceValueDiceTwo){
+					westSidePnl.append(playerList.getActivePlayer().getName() +" you got free from jail\n");
+					playerList.getActivePlayer().setJailCounter(100); //High jailcounter above 5 will automatically reset for next round
+					/* 
 					playerList.getActivePlayer().setJailCounter(0);
 					playerList.getActivePlayer().setPlayerIsInJail(false);
 					playerList.getActivePlayer().setPlayerIsInJail(false);
 					JOptionPane.showMessageDialog(null, playerList.getActivePlayer().getName() + " hit equals and got free from jail\n");
 					this.activateRollDice();
-				} else{
-					JOptionPane.showMessageDialog(null, playerList.getActivePlayer().getName() + " is still in jail!");
-					btnRollDice.setEnabled(false);
-					btnEndTurn.setEnabled(true);
+					*/
+				} 
+				if (faceValueDiceOne != faceValueDiceTwo){
+					westSidePnl.append(playerList.getActivePlayer().getName() +" did NOT hit equals and remains in jail\n");
+					//JOptionPane.showMessageDialog(null, playerList.getActivePlayer().getName() + " is still in jail!");
 				}
+
+				btnRollDice.setEnabled(false);
+				btnEndTurn.setEnabled(true);
 
 			} else{
 
@@ -411,10 +426,19 @@ public class Dice extends JPanel implements ActionListener {
 	}
 
 
-	public void attemptSuccededToGetOutOfJail() {
-		tryGetOutOfJail = true;
+	/**
+	 * Score equals on the dice to get out of jail
+	 */
+	public void attemptToGetOutOfJail() {
+
+		westSidePnl.append(playerList.getActivePlayer().getName() + " try to hit equals so you can escape jail\n");
+
 		btnRollDice.setEnabled(true);
 		btnEndTurn.setEnabled(false);
 
+	}
+
+	public void setWestPanel(WestSidePanel westSidePnl) {
+		this.westSidePnl = westSidePnl;
 	}
 }
