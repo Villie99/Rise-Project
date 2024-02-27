@@ -217,8 +217,7 @@ public class Dice extends JPanel implements ActionListener {
 			/**
 			 * This if statement checks if the player is in jail
 			 * and gives them a chance to play out of jail
-			 * If scoring equals on the dices the jailcounter will be set to very high 
-			 * which means the player will be automatically released from jail in the next round
+			 * If scoring equals on the dices the jailcounter will be set to zero and jail status to false
 			 */
 			if(playerList.getActivePlayer().isPlayerInJail() == true){
 				resizedImage = faceToShow.getImage().getScaledInstance(diceWidth, diceHeight, Image.SCALE_SMOOTH);
@@ -227,18 +226,11 @@ public class Dice extends JPanel implements ActionListener {
 
 				if(faceValueDiceOne == faceValueDiceTwo){
 					westSidePnl.append(playerList.getActivePlayer().getName() +" you got free from jail\n");
-					playerList.getActivePlayer().setJailCounter(100); //High jailcounter above 5 will automatically reset for next round
-					/* 
-					playerList.getActivePlayer().setJailCounter(0);
 					playerList.getActivePlayer().setPlayerIsInJail(false);
-					playerList.getActivePlayer().setPlayerIsInJail(false);
-					JOptionPane.showMessageDialog(null, playerList.getActivePlayer().getName() + " hit equals and got free from jail\n");
-					this.activateRollDice();
-					*/
+					playerList.getActivePlayer().setJailCounter(0); //High jailcounter above 5 will automatically reset for next round
 				} 
 				if (faceValueDiceOne != faceValueDiceTwo){
 					westSidePnl.append(playerList.getActivePlayer().getName() +" did NOT hit equals and remains in jail\n");
-					//JOptionPane.showMessageDialog(null, playerList.getActivePlayer().getName() + " is still in jail!");
 				}
 
 				btnRollDice.setEnabled(false);

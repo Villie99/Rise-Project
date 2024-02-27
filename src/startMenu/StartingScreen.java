@@ -78,10 +78,10 @@ public class StartingScreen extends JFrame {
 	private JLabel lblPlayerIndex4 = new JLabel("Player 4:");
 	private JLabel[] playerLabels = new JLabel[] { lblPlayerIndex1, lblPlayerIndex2, lblPlayerIndex3, lblPlayerIndex4 };
 
-	private JTextField tfPlayer1 = new JTextField("Name1...");
-	private JTextField tfPlayer2 = new JTextField("Name2...");
-	private JTextField tfPlayer3 = new JTextField("Name3...");
-	private JTextField tfPlayer4 = new JTextField("Name4...");
+	private JTextField tfPlayer1 = new JTextField("John");
+	private JTextField tfPlayer2 = new JTextField("Mary");
+	private JTextField tfPlayer3 = new JTextField("Sylvia");
+	private JTextField tfPlayer4 = new JTextField("Tom");
 	private JTextField[] playerTf = new JTextField[] { tfPlayer1, tfPlayer2, tfPlayer3, tfPlayer4 };
 
 	private String[] colors = new String[]  { "RED", "GREEN", "ORANGE", "YELLOW", "CYAN", "MAGENTA" };
