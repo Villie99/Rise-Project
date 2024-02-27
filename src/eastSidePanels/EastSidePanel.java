@@ -131,8 +131,15 @@ public class EastSidePanel extends JPanel {
 		StringBuilder scoresText = new StringBuilder("Scores Leaderboard\n");
 	
 		for (int i = 0; i < playerList.getLength(); i++) {
+
 			Player currentPlayer = playerList.getPlayerFromIndex(i);
-			scoresText.append(currentPlayer.getNameText()); // Add player label
+
+			String name = currentPlayer.getNameText();
+
+			if(currentPlayer.isPlayerInJail()){
+				name = name + " (In Jail " + (5 - currentPlayer.getJailCounter()) + " turns)";
+			}
+			scoresText.append(name); // Add player label
 			scoresText.append(": Net Worth: ").append(currentPlayer.getNetWorth()).append("\n");
 			// Add any other information you want to display for each player
 		}

@@ -119,14 +119,6 @@ public class Player {
 	 *                 anymore set to false
 	 */
 	public void setPlayerIsInJail(boolean isInJail) {
-		if(isInJail){
-			String imprisoned = " (Imprisoned)";
-			this.name += (imprisoned);
-		}
-		else{
-			String imprisoned = " (Imprisoned)";
-			this.name = this.name.replace(imprisoned, "");
-		}
 		this.playerIsInJail = isInJail;
 	}
 

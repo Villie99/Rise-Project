@@ -87,7 +87,7 @@ public class StartingScreen extends JFrame {
 	private String[] colors = new String[]  { "RED", "GREEN", "ORANGE", "YELLOW", "CYAN", "MAGENTA" };
 	private String[] colors1 = new String[] { "GREEN", "ORANGE", "YELLOW", "CYAN", "MAGENTA", "RED" };
 	private String[] colors2 = new String[] { "ORANGE", "YELLOW", "CYAN", "MAGENTA", "RED", "GREEN" };
-	private String[] colors3 = new String[] { "YELLOW", "CYAN", "MAGENTA", "RED", "GREEN", "ORANGE" };
+	private String[] colors3 = new String[] { "MAGENTA", "CYAN", "YELLOW", "RED", "GREEN", "ORANGE" };
 
 	private JComboBox<String> playerColors1 = new JComboBox<String>(colors);
 	private JComboBox<String> playerColors2 = new JComboBox<String>(colors1);
