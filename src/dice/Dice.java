@@ -51,7 +51,7 @@ public class Dice extends JPanel implements ActionListener {
 	private int diceHeight = (screenSize.height) / 10;
 	private int roll;
 
-	private boolean firstroundDeterminism = true; //For testing purposes, set to false to disable 
+	private int determinism = 0; //For testing purposes, set to false to disable 
 
 	
 	
@@ -207,11 +207,11 @@ public class Dice extends JPanel implements ActionListener {
 
 			
 			//For testing purposes going to jail on first roll
-			if(firstroundDeterminism){
+			if(determinism < 2){
 				faceValueDiceOne = 25;
 				faceValueDiceTwo = 5;
-				firstroundDeterminism = false;
-			}
+				determinism++;
+			} 
 			
 
 			/**
@@ -227,7 +227,7 @@ public class Dice extends JPanel implements ActionListener {
 				if(faceValueDiceOne == faceValueDiceTwo){
 					westSidePnl.append(playerList.getActivePlayer().getName() +" you got FREE from jail!\n");
 					playerList.getActivePlayer().setPlayerIsInJail(false);
-					playerList.getActivePlayer().setJailCounter(0); //High jailcounter above 5 will automatically reset for next round
+					playerList.getActivePlayer().setJailCounter(0); 
 				} 
 				if (faceValueDiceOne != faceValueDiceTwo){
 					westSidePnl.append(playerList.getActivePlayer().getName() +" did NOT hit equals: remains in jail\n");
