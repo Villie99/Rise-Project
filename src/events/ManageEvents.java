@@ -152,7 +152,7 @@ public class ManageEvents {
 			}
 		} else if (tempProperty.getPurchaseable() == false) {
 			payRent(tempProperty, player, tempInt);
-			
+			System.out.println("hey");
 		}
 	}
 
