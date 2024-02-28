@@ -211,7 +211,7 @@ public class Dice extends JPanel implements ActionListener {
 			//For testing purposes going to jail on first two roll
 			
 			if(determinism < 2){
-				faceValueDiceOne = 1;
+				faceValueDiceOne = 25;
 				faceValueDiceTwo = 5;
 				determinism++;
 			} 
