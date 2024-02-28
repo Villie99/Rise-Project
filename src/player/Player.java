@@ -423,7 +423,7 @@ public class Player {
 	public String rankIconUpgrade(PlayerRanks playerRank) {
 		String currentImage = getImage().toString();
 		switch (playerRank) {
-			case PlayerRanks.KNIGHT:
+			case KNIGHT:
 				if (currentImage.equals("images/playerRed.jpg")) {
 					setIcon(new ImageIcon("images/playerRed.jpg"));//Ny Knight Bild
 				}
@@ -447,7 +447,7 @@ public class Player {
 				}
 				break;
 	
-			case PlayerRanks.LORD:
+			case LORD:
 				if (currentImage.equals("images/playerRed.jpg")) {
 					setIcon(new ImageIcon("images/playerRed.jpg"));
 				}
@@ -471,7 +471,7 @@ public class Player {
 				}
 				break;
 
-			case PlayerRanks.KINGS:
+			case KINGS:
 				if (currentImage.equals("images/playerRed.jpg")) {
 					setIcon(new ImageIcon("images/playerRed.jpg"));
 				}
