@@ -18,6 +18,7 @@ import board.Board;
 import cheat.CheatGui; //May be needed for testing in future 
 import eastSidePanels.EastSidePanel;
 import events.ManageEvents;
+import player.Player;
 import player.PlayerList;
 import westSidePanel.WestSidePanel;
 
@@ -59,7 +60,7 @@ public class Dice extends JPanel implements ActionListener {
 	 * @param playerList method used for updating the list of players 
 	 */
 	public void addPlayerList(PlayerList playerList) {
-		eastSidePnl.updateScores();
+		updateScores();
 
 		this.playerList = playerList;
 		
@@ -131,13 +132,14 @@ public class Dice extends JPanel implements ActionListener {
 		add(btnEndTurn);
 //		add(cheat); //Enable for testing with cheater.
 		btnEndTurn.setEnabled(false);
+
 	}
 
 	/**
 	 * Action Listener that handles what happens if the buttons are pressed
 	 */
 	public void actionPerformed(ActionEvent e) {
-		eastSidePnl.updateScores();
+		updateScores();
 
 
 		if (e.getSource() == btnRollDice) {
@@ -283,7 +285,7 @@ public class Dice extends JPanel implements ActionListener {
 		 * If the player is not in jail they can roll the dice 
 		 */
 		if (e.getSource() == btnEndTurn) {
-			eastSidePnl.updateScores();
+			updateScores();
 
 
 			playerList.switchToNextPlayer();
@@ -334,7 +336,7 @@ public class Dice extends JPanel implements ActionListener {
 	 * To free the prisoner
 	 */
 	public void activateRollDice() {
-		eastSidePnl.updateScores();
+		updateScores();
 
 		btnRollDice.setEnabled(true);
 		btnEndTurn.setEnabled(false);
@@ -344,7 +346,7 @@ public class Dice extends JPanel implements ActionListener {
 	 * Ends the turn if player is eliminated
 	 */
 	public void endTurnIfPlayerEliminated() {
-		eastSidePnl.updateScores();
+		updateScores();
 
 		btnRollDice.setEnabled(true);
 		btnEndTurn.setEnabled(false);
@@ -354,7 +356,7 @@ public class Dice extends JPanel implements ActionListener {
 	 * @param playerList
 	 */
 	public void setPlayerList(PlayerList playerList) {
-		eastSidePnl.updateScores();
+		updateScores();
 
 		this.playerList = playerList;
 	}
@@ -384,7 +386,7 @@ public class Dice extends JPanel implements ActionListener {
 		}
 
 		public void run() {
-			eastSidePnl.updateScores();
+			updateScores();
 
 			for (int i = 0; i < getRoll(); i++) {
 				board.removePlayer(playerList.getActivePlayer());
@@ -440,4 +442,26 @@ public class Dice extends JPanel implements ActionListener {
 	public void setWestPanel(WestSidePanel westSidePnl) {
 		this.westSidePnl = westSidePnl;
 	}
+
+	public void updateScores() {
+		playerList = eastSidePnl.getPlayerList();
+
+        StringBuilder scoresText = new StringBuilder("Scores Leaderboard\n");
+    
+        for (int i = 0; i < playerList.getLength(); i++) {
+
+            Player currentPlayer = playerList.getPlayerFromIndex(i);
+
+            String name = currentPlayer.getNameText();
+
+            if(currentPlayer.isPlayerInJail()){
+                name = name + " (In Jail " + (5 - currentPlayer.getJailCounter()) + " turns)";
+            }
+            scoresText.append(name); // Add player label
+            scoresText.append(": Net Worth: ").append(currentPlayer.getNetWorth()).append("\n");
+            // Add any other information you want to display for each player
+        }
+
+		westSidePnl.setScoresText(scoresText.toString());
+    }
 }

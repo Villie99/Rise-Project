@@ -23,6 +23,7 @@ public class WestSidePanel extends JPanel {
 	private Font font = new Font("ALGERIAN", Font.BOLD, 19);
 	private JTextArea txtTileInfo = new JTextArea();
 	private JTextArea txtMessage = new JTextArea();
+	private JTextArea textAreaScores;
 	private JScrollPane scroller = new JScrollPane(txtMessage);
 	
 	private DefaultCaret caret = (DefaultCaret)txtMessage.getCaret();
@@ -88,7 +89,7 @@ public class WestSidePanel extends JPanel {
 		scroller.setBackground(Color.white);
 		scroller.setForeground(Color.black);
 		scroller.setForeground(new Color(71, 60, 50, 225));
-		scroller.setPreferredSize(new Dimension(320, 405));
+		scroller.setPreferredSize(new Dimension(320, 305));
 		scroller.setAutoscrolls(true);
 		
 		lblHistoryTitle = new JLabel("Game history");
@@ -98,11 +99,17 @@ public class WestSidePanel extends JPanel {
 		lblHistoryTitle.setForeground(Color.white);
 		lblHistoryTitle.setFont(font);
 
+		textAreaScores = new JTextArea("Scores");
+        textAreaScores.setPreferredSize(new Dimension(320, 100));
+        textAreaScores.setForeground(Color.white);
+        textAreaScores.setBackground(Color.black);
+
 		pnlHistory.setPreferredSize(new Dimension(340, 475));
 		pnlHistory.setBackground(new Color(0, 0, 0, 20));
 		pnlHistory.setBorder(border);
 		pnlHistory.add(lblHistoryTitle);
 		pnlHistory.add(scroller);
+		pnlHistory.add(textAreaScores);
 
 		/**
 		 * The main Panel
@@ -151,4 +158,8 @@ public class WestSidePanel extends JPanel {
 	public void append(String res) {
 		txtMessage.append(res);
 	}
+
+	public void setScoresText(String scoresText) {
+        textAreaScores.setText(scoresText);
+    }
 }
