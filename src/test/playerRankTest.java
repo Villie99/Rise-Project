@@ -14,7 +14,7 @@ public class playerRankTest {
     public void testMath() {
         int result = 2+2;
         System.out.println();
-        assertEquals(result, 3);
+        assertEquals(result, 4);
     }
 
     @Test
@@ -30,8 +30,7 @@ public class playerRankTest {
         Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
         player.setNetWorth(2000);
         player.checkPlayerRank();
-        fail("This test doesn't represent me as an individiual");
-        assertEquals(false, player.getPlayerRank());
+        assertEquals(PlayerRanks.KNIGHT, player.getPlayerRank());
     }
 
     @Test
