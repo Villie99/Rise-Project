@@ -57,6 +57,7 @@ public class ManageEvents {
 	 */
 	public ManageEvents(Board board, PlayerList playerList, WestSidePanel pnlWest, Dice dice, EastSidePanel eastPanel) {
 		this.dice = dice;
+		dice.setWestPanel(pnlWest);
 		this.westPanel = pnlWest;
 		this.board = board;
 		this.playerList = playerList;
@@ -151,7 +152,7 @@ public class ManageEvents {
 			}
 		} else if (tempProperty.getPurchaseable() == false) {
 			payRent(tempProperty, player, tempInt);
-			
+			System.out.println("hey");
 		}
 	}
 
@@ -352,7 +353,6 @@ public class ManageEvents {
 		player.setPositionInSpecificIndex(10);
 		board.setPlayer(player);
 		JOptionPane.showMessageDialog(null, player.getName() + " got in jail.");
-		westPanel.append(player.getName() + " is in jail for " + (5 - player.getJailCounter()) + " more turns\n");
 	}
 
 	/**
@@ -430,19 +430,21 @@ public class ManageEvents {
 	 * @param player in jail.
 	 */
 	public void jailDialog(Player player) {
+		//eastPanel.updateScores();
+		int totalBail = 600 - player.getJailCounter() * 100;
 		int yesOrNo = JOptionPane.showConfirmDialog(null,
-				player.getName()  + " , do you want to pay the bail\nWhich is " + (player.getJailCounter() * 50) + " GC?", "JOption",
-				JOptionPane.YES_NO_OPTION);
-		int totalBail = player.getJailCounter() * 50;
+		player.getName()  + " , do you want to pay the bail\nWhich is " + totalBail + " GC?", "JOption",
+		JOptionPane.YES_NO_OPTION);
 		if (yesOrNo == 0 && (totalBail <= player.getBalance())) {
+			player.decreaseBalace(totalBail);
+			player.decreaseNetWorth(totalBail);
 			player.setJailCounter(0);
 			player.setPlayerIsInJail(false);
-			westPanel.append(player.getName() + " paid the bail and\ngot free from jail\n");
+			westPanel.append(player.getName() + " paid the bail: got free from jail\n");
 			dice.activateRollDice();
 		} else {
-			westPanel.append(player.getName() + " did not pay tha bail\n and is still in jail\n" +
-			"hit equals to get free\n");
-			dice.attemptSuccededToGetOutOfJail();
+			westPanel.append(player.getName() + " did not pay tha bail: remains in jail\n");
+			dice.attemptToGetOutOfJail();
 		}
 	}
 	

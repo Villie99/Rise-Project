@@ -343,8 +343,9 @@ public class PlayerProperties extends JPanel implements ActionListener {
 	 */
 	private String sellProperties() {
 		Property tempProperty = playerList.getPlayerFromIndex(playerAtI).getPropertyAt(propertyAtI);
+
 		playerList.getPlayerFromIndex(playerAtI).sellProperty(tempProperty);
-		eastSidePanel.addPlayerList(playerList);
+
 		return "You have sold a property";
 	}
 
