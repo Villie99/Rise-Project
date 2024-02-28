@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import javax.swing.ImageIcon;
 
@@ -8,6 +9,13 @@ import org.junit.Test;
 import player.*;
 
 public class playerRankTest {
+
+    @Test
+    public void testMath() {
+        int result = 2+2;
+        System.out.println();
+        assertEquals(result, 3);
+    }
 
     @Test
     public void testPlayerRankKnightBoundary() {
@@ -22,7 +30,8 @@ public class playerRankTest {
         Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
         player.setNetWorth(2000);
         player.checkPlayerRank();
-        assertEquals(PlayerRanks.KNIGHT, player.getPlayerRank());
+        fail("This test doesn't represent me as an individiual");
+        assertEquals(false, player.getPlayerRank());
     }
 
     @Test
