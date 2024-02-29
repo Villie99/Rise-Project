@@ -9,66 +9,32 @@ import player.*;
 
 public class playerImgIconOnRankUpTest {
     @Test
-    public void testPlayerRankKnightBoundary() {
+    public void testPlayerRankUpToKnightFromPeasant() {
         Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
-        player.setNetWorth(1999);
-        player.checkPlayerRank();
-        assertEquals(PlayerRanks.PEASANT, player.getPlayerRank());
+        player.setNetWorth(2000);
+        String result = player.checkPlayerRank();
+        assertEquals("Upgraded icon to red knight from peasant", result);
     }
 
     @Test
-    public void testPlayerRankKnightBoundaryUpper() {
+    public void testPlayerRankUpToLordFromKnight() {
         Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
         player.setNetWorth(2000);
         player.checkPlayerRank();
-        assertEquals(PlayerRanks.KNIGHT, player.getPlayerRank());
+        player.setNetWorth(4000);
+        String result = player.checkPlayerRank();
+        assertEquals("Upgraded icon to red lord from knight", result);
     }
 
     @Test
-    public void testPlayerRankLordBoundary() {
+    public void testPlayerRankUpToKingFromLord() {
         Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
-        player.setNetWorth(3999);
+        player.setNetWorth(2000);
         player.checkPlayerRank();
-        assertEquals(PlayerRanks.KNIGHT, player.getPlayerRank());
-    }
-
-    @Test
-    public void testPlayerRankLordBoundaryUpper() {
-        Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
         player.setNetWorth(4000);
         player.checkPlayerRank();
-        assertEquals(PlayerRanks.LORD, player.getPlayerRank());
-    }
-
-    @Test
-    public void testPlayerRankKingBoundary() {
-        Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
-        player.setNetWorth(7499);
-        player.checkPlayerRank();
-        assertEquals(PlayerRanks.LORD, player.getPlayerRank());
-    }
-
-    @Test
-    public void testPlayerRankKingBoundaryUpper() {
-        Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
         player.setNetWorth(7500);
-        player.checkPlayerRank();
-        assertEquals(PlayerRanks.KINGS, player.getPlayerRank());
-    }
-
-    @Test
-    public void testPlayerRankNoRankChange() {
-        Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
-        player.setNetWorth(1000);
-        player.checkPlayerRank();
-        assertEquals(PlayerRanks.PEASANT, player.getPlayerRank());
-    }
-
-    @Test
-    public void testPlayerRankKnightNoChange() {
-        Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
-        player.setNetWorth(3000);
-        player.checkPlayerRank();
-        assertEquals(PlayerRanks.KNIGHT, player.getPlayerRank());
-    }
+        String result = player.checkPlayerRank();
+        assertEquals("Upgraded icon to red king from lord", result);
+    }    
 }

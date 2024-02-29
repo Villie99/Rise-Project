@@ -261,7 +261,44 @@ public class StartingScreen extends JFrame {
 			pnlPlayerInfo.add(playerColors[i]);
 		}
 	}
+
+	/**
+	 * Method to set player1s name (only used for testing)
+	 * @param tfPlayer1
+	 * @autor Petter Carlsson & Villie Brandt
+	 */
+	public void setTfPlayer1(JTextField tfPlayer1) {
+		this.tfPlayer1 = tfPlayer1;
+	}
+    
+	/**
+	 * Method to check if player1s name is valid (only used for testing)
+	 * @autor Petter Carlsson & Villie Brandt
+	 */
+	public boolean runNameCheck() {
+		ButtonListener bl = new ButtonListener();
+		return bl.nameCheck();
+	}
+
+	/**
+	 * Method to get the width of the frame (only used for testing)
+	 * @return int
+	 * @autor Petter Carlsson & Villie Brandt
+	 */
+	@Override
+	public int getWidth() {
+		return this.widht;
+	}
 	
+	/**
+	 * Method to get the height of the frame (only used for testing)
+	 * @return int
+	 * @autor Petter Carlsson & Villie Brandt
+	 */
+	@Override
+	public int getHeight() {
+		return this.height;
+	}
 
 	/**
 	 * Buttonlistener class, listens for clicks.
