@@ -1,21 +1,12 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import javax.swing.ImageIcon;
 
 import org.junit.Test;
 import player.*;
 
 public class playerRankTest {
-
-    @Test
-    public void testMath() {
-        int result = 2+2;
-        System.out.println();
-        assertEquals(result, 4);
-    }
 
     @Test
     public void testPlayerRankKnightBoundary() {
