@@ -349,12 +349,17 @@ public class Player {
 
     }
 
-    /**
-     * @param newTavern add a new Tavern to a user
-     */
     public void addNewTavern(Tavern newTavern) {
+        updateTavernNbr = true; 
+        owned++;
         this.tavernsOwned.add(newTavern);
     }
+
+    public int getOwned(){
+        System.out.println("player" + name + " OWNED Tavs " + owned);
+        return owned;
+    }
+
 
     /**
      * If user has two taverns the event will differ
