@@ -36,10 +36,8 @@ public class Jail implements Tile {
 	 * returns information about tile
 	 */
 	public String getTileInfo() {
-		return "JAIL + \nPlayer can choose to spend three rounds here"
-				+ "\nor pay the bail.\nFirst day costs 50 gold coins"
-				+ "\nSecond time costs 100 gold coins"
-				+ "\nThird time player has to pay 200 and is set free";
+		return "JAIL + \nPlayer can choose to spend five rounds here"
+				+ "\nor pay the bail.";
 	}
 
 	/**

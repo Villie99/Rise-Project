@@ -22,6 +22,9 @@ public class PlayerList {
 	private ImageIcon playerIcon = new ImageIcon(); 
 	private int currentPlayer = 0; 
 	private int playerListLength = 0;
+	
+	private boolean test = false; //only for testing
+	private Player testPlayer=null; //only for testing
 
 	
 	
@@ -82,6 +85,9 @@ public class PlayerList {
 	 * @return the current player
 	 */
 	public Player getActivePlayer() {
+		if (test==true){
+			return testPlayer;
+		}
 		return activePlayers.get(currentPlayer); 
 	}
 		
@@ -122,5 +128,21 @@ public class PlayerList {
 			currentPlayer = 0; 
 		}	
 	}
+
+
+	/**
+	 * only for testing
+	 * @param player
+	 */
+	public void activateTest(Player player) {
+		test=true;
+		testPlayer=player;
+	}
+
+	public void testing(Object object){
+		test=true;
+		testPlayer=(Player) object;
+	}
+
 
 }

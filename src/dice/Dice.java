@@ -52,8 +52,7 @@ public class Dice extends JPanel implements ActionListener {
 	private int diceHeight = (screenSize.height) / 10;
 	private int roll;
 
-	private int determinism = 0; //For testing purposes, set to false to disable 
-
+	private int determinism = 3; //Important for testing purposes
 	
 	
 	/**
@@ -95,6 +94,11 @@ public class Dice extends JPanel implements ActionListener {
 
 		initializePanel();
 		
+	}
+
+	public Dice(PlayerList playerList){ //for testing important
+		this.playerList = playerList;
+		westSidePnl = new WestSidePanel();
 	}
 
 	/**
@@ -146,9 +150,6 @@ public class Dice extends JPanel implements ActionListener {
 			int faceValueDiceOne = (int) (Math.random() * (7 - 1) + 1);
 			int faceValueDiceTwo = (int) (Math.random() * (7 - 1) + 1);
 
-
-			//faceValueDiceOne = 12;
-			//faceValueDiceTwo = 0;
 
 			switch (faceValueDiceOne) {
 			case 1:
@@ -207,14 +208,12 @@ public class Dice extends JPanel implements ActionListener {
 			}
 
 
-			
-			//For testing purposes going to jail on first two roll
-			/* 
+			//for testing purposes, affects the code only if instance variable Determinism is initialized less than 2
 			if(determinism < 2){
-				faceValueDiceOne = 7;
+				faceValueDiceOne = 25;
 				faceValueDiceTwo = 5;
 				determinism++;
-			} */
+			}
 			
 			
 			
@@ -230,18 +229,8 @@ public class Dice extends JPanel implements ActionListener {
 				showDice = new ImageIcon(resizedImage);
 				lblDice2.setIcon(showDice);
 
-				if(faceValueDiceOne == faceValueDiceTwo){
-					westSidePnl.append(playerList.getActivePlayer().getName() +" you got FREE from jail!\n");
-					playerList.getActivePlayer().setPlayerIsInJail(false);
-					playerList.getActivePlayer().setJailCounter(0);
-				} 
-				if (faceValueDiceOne != faceValueDiceTwo){
-					westSidePnl.append(playerList.getActivePlayer().getName() +" did NOT hit equals: remains in jail\n");
-				}
+				tryPlayOutOfJail(faceValueDiceOne, faceValueDiceTwo);
 
-				btnRollDice.setEnabled(false);
-				btnEndTurn.setEnabled(true);
-				
 				if(!playerList.getActivePlayer().isPlayerInJail()){
 					activateRollDice();
 				}
@@ -312,6 +301,25 @@ public class Dice extends JPanel implements ActionListener {
 
 	}
 
+	public void tryPlayOutOfJail(int faceValueDiceOne, int faceValueDiceTwo) {
+		
+
+		if(faceValueDiceOne == faceValueDiceTwo){
+			westSidePnl.append(playerList.getActivePlayer().getName() +" you got FREE from jail!\n");
+			playerList.getActivePlayer().setPlayerIsInJail(false);
+			playerList.getActivePlayer().setJailCounter(0);
+		} 
+		if (faceValueDiceOne != faceValueDiceTwo){
+			westSidePnl.append(playerList.getActivePlayer().getName() +" did NOT hit equals: remains in jail\n");
+		}
+
+		btnRollDice.setEnabled(false);
+		btnEndTurn.setEnabled(true);
+		
+
+	}
+
+
 	/**
 	 * @param Cheat method used for Testing
 	 * it moves the player to a specific index
@@ -357,9 +365,10 @@ public class Dice extends JPanel implements ActionListener {
 	 * @param playerList
 	 */
 	public void setPlayerList(PlayerList playerList) {
+		this.playerList = playerList;
+
 		updateScores();
 
-		this.playerList = playerList;
 	}
 	
 	/**
@@ -465,4 +474,13 @@ public class Dice extends JPanel implements ActionListener {
 
 		westSidePnl.setScoresText(scoresText.toString());
     }
+
+
+
+	public PlayerList getPlayerList() { //Important for testing purposes
+
+		return playerList;
+
+	}
+
 }
