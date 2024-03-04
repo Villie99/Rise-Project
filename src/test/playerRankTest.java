@@ -58,7 +58,7 @@ public class playerRankTest {
 
     @Test
     public void testPlayerRankNoRankChange() {
-        Player player = new Player("images/playerRedPeasant.png"), 0);
+        Player player = new Player("TestPlayer", new ImageIcon("images/playerRedPeasant.png"), 0);
         player.setNetWorth(1000);
         player.checkPlayerRank();
         assertEquals(PlayerRanks.PEASANT, player.getPlayerRank());
