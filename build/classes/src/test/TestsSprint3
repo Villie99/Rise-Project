@@ -1,0 +1,25 @@
+package test;
+
+import static org.junit.Assert.assertEquals;
+
+import javax.swing.ImageIcon;
+
+import org.junit.Test;
+import player.*;
+
+public class TestsSprint3 {
+    @Test
+    public void testPlayerRankUpToKnightFromPeasant() {
+
+    }
+
+    @Test
+    public void testPlayerRankUpToLordFromKnight() {
+
+    }
+
+    @Test
+    public void testPlayerRankUpToKingFromLord() {
+
+    }    
+}
