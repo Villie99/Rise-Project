@@ -7,6 +7,9 @@ import javax.swing.ImageIcon;
 import org.junit.Test;
 
 import dice.Dice;
+import eastSidePanels.EastSidePanel;
+import eastSidePanels.PlayerInfoPanel;
+import eastSidePanels.PropertyWindow;
 import player.PlayerList;
 import westSidePanel.WestSidePanel;
 
@@ -254,6 +257,18 @@ public class TestsSprint3 {
 
         assertEquals(true, dice.getPlayerList().getActivePlayer().isPlayerInJail());
     }
+
+    @Test
+    public void TF46_playerName_shows_eastSidePanel() {
+        PlayerList playerList = new PlayerList();
+        playerList.addNewPlayer("TestPlayer", new ImageIcon("images/playerRedPeasant.png"));
+
+        EastSidePanel eastSidePanel = new EastSidePanel();
+        PlayerInfoPanel playerInfoPanel  = eastSidePanel.TabTest(playerList);
+    
+        assertEquals(playerInfoPanel.getPlayerNameText(), "TESTPLAYER");
+    }
+
 
     
 }

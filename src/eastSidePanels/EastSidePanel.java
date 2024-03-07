@@ -105,12 +105,20 @@ public class EastSidePanel extends JPanel {
 		return currentPlayer;
 	}
 
+	public PlayerInfoPanel TabTest(PlayerList playerList) {
+		return new PlayerInfoPanel(playerList, 0, this);		
+	}
+
 	public void updateScores() {
 		System.out.println("Im still being called wrongly");
     }
 
 	public PlayerList getPlayerList() {
 		return playerList;
+	}
+
+	public void setPlayerList(PlayerList playerList) {
+		this.playerList = playerList;
 	}
 
 }

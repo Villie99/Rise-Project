@@ -51,6 +51,7 @@ public class PropertyWindow extends JPanel {
 		add(tab);
 
 	}
+
 	
 	public void addPlayerList(PlayerList playerList) {
 
@@ -139,6 +140,10 @@ public class PropertyWindow extends JPanel {
 
 	}
 
+	public JTabbedPane getTab() {
+		return tab;
+	}
+
 	/**
 	 * @return playerAT
 	 */
@@ -156,5 +161,11 @@ public class PropertyWindow extends JPanel {
 	public EastSidePanel getEastSidePanel() {
 		return eastSidePanel;
 	}
+
+	public PlayerProperties getPlayerProperties() {
+		return playerProperties;
+	}
+	
+
 
 }
