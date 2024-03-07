@@ -162,4 +162,9 @@ public class WestSidePanel extends JPanel {
 	public void setScoresText(String scoresText) {
         textAreaScores.setText(scoresText);
     }
+
+	public String getScoresText(){
+		return textAreaScores.getText();
+	}
+	
 }

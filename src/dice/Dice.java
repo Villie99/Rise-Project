@@ -53,6 +53,7 @@ public class Dice extends JPanel implements ActionListener {
 	private int roll;
 
 	private int determinism = 3; //Important for testing purposes
+	private boolean testing = false; //Important for testing purposes
 	
 	
 	/**
@@ -454,7 +455,10 @@ public class Dice extends JPanel implements ActionListener {
 	}
 
 	public void updateScores() {
-		playerList = eastSidePnl.getPlayerList();
+		if (!testing){
+			playerList = eastSidePnl.getPlayerList();
+
+		}
 
         StringBuilder scoresText = new StringBuilder("Scores Leaderboard\n");
     
@@ -482,5 +486,10 @@ public class Dice extends JPanel implements ActionListener {
 		return playerList;
 
 	}
+
+	public void setTesting(boolean testing) { //Important for testing purposes
+		this.testing = testing;
+	}
+
 
 }
