@@ -55,37 +55,21 @@ public class Player {
      */
 
     public Player(String inPlayerName, ImageIcon playerIcon, int playerIndex) {
-
-        setName(inPlayerName);
-        this.playerIcon = playerIcon;
-        setIsAlive(true);
-        this.playerIndex = playerIndex;
-
-        setBalance(1500);
-        setNetWorth(1500);
-        setPlayerRank(playerRank.PEASANT);
-        this.playerIndex = playerIndex;
-        this.tavernsOwned = new ArrayList<>();
-        this.propertiesOwned = new ArrayList<>();
-
-        counter = 0;
+        this(inPlayerName, playerIcon, null, playerIndex);
     }
 
     public Player(String inPlayerName, ImageIcon playerIcon, Color playerColor, int playerIndex) {
-        this.playerColor = playerColor;
         setName(inPlayerName);
         this.playerIcon = playerIcon;
         setIsAlive(true);
         this.playerIndex = playerIndex;
-
         setBalance(1500);
         setNetWorth(1500);
-        setPlayerRank(playerRank.PEASANT);
-        this.playerIndex = playerIndex;
+        setPlayerRank(PlayerRanks.PEASANT);
         this.tavernsOwned = new ArrayList<>();
         this.propertiesOwned = new ArrayList<>();
-
         counter = 0;
+        this.playerColor = playerColor;
     }
 
     /**
@@ -180,21 +164,19 @@ public class Player {
     }
 
     /**
-     * method used to move the player by either one or many steps
+     * Moves the player by a specified number of steps, handling board wrapping.
      * 
-     * @param amountOfStepsToMove
+     * @param amountOfStepsToMove The number of steps to move the player.
      */
     public void setPosition(int amountOfStepsToMove) {
+        // Calculate the new position
+        int newPosition = (counter + amountOfStepsToMove) % 40;
 
-        for (int i = 0; i < amountOfStepsToMove; i++) {
-
-            if (counter < 39) {
-                counter++;
-            } else {
-                counter = 0;
-                playerPassedgo = true;
-            }
+        if (newPosition < counter) {
+            playerPassedgo = true;
         }
+
+        counter = newPosition;
     }
 
     /**
