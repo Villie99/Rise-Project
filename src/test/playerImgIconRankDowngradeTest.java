@@ -25,7 +25,7 @@ public class playerImgIconRankDowngradeTest {
         Player player = new Player("TestPlayer", new ImageIcon("images/playerRedLord.png"), 0);
         player.setNetWorth(4000);
         player.checkPlayerRank();
-        player.setNetWorth(7500);
+        player.setNetWorth(3999);
         String result = player.checkPlayerRank();
         assertEquals("Downgraded icon to red knight from lord", result);
         
