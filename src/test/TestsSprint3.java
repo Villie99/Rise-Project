@@ -9,7 +9,6 @@ import org.junit.Test;
 import dice.Dice;
 import eastSidePanels.EastSidePanel;
 import eastSidePanels.PlayerInfoPanel;
-import eastSidePanels.PropertyWindow;
 import player.PlayerList;
 import westSidePanel.WestSidePanel;
 
