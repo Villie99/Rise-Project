@@ -16,7 +16,7 @@ import tiles.Tile;
  * Player class deals with everything that has to do with a player.
  * 
  * @author AevanDino, Seth �berg, Muhammad Hasan, Sebastian Viro, Petter
- *         Carlsson, Villie Brandt
+ *         Carlsson, Villie Brandt, Simon Flenman
  */
 public class Player {
 
