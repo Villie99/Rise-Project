@@ -36,10 +36,12 @@ public class PlayerProperties extends JPanel implements ActionListener {
 	private JLabel lblRent = new JLabel("Rent");
 	private JLabel lblRentPerLevel = new JLabel("Rent Per Level");
 	private JTextArea taLevel = new JTextArea("");
+
 	private JButton btnUpgrade = new JButton("Upgrade");
 	private JButton btnDowngrade = new JButton("Downgrade");
 	private JButton btnTrade = new JButton("Trade");
-	private JButton btnSell = new JButton("Sell");
+	private JButton btnSell = new JButton("Sell");	
+
 	private Font font = new Font("ALGERIAN", Font.BOLD, 22);
 	private Font fontLevel = new Font("ALGERIAN", Font.BOLD, 50);
 	private String plus = "+";
@@ -75,28 +77,43 @@ public class PlayerProperties extends JPanel implements ActionListener {
 		lblRent.setFont(font);
 		lblRentPerLevel.setFont(font);
 
-		lblRent.setBounds(0, 92, 330, 64);
+		lblRent.setBounds(10, 92, 330, 64);
 		add(lblRent);
-		lblRentPerLevel.setBounds(0, 140, 330, 64);
+		lblRentPerLevel.setBounds(10, 140, 330, 64);
 		add(lblRentPerLevel);
 
-		btnDowngrade.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		btnDowngrade.setBounds(163, 481, 167, 53);
-		add(btnDowngrade);
+		/*
+		 * Upgrade	Downgrade
+		 *  Sell	  Trade
+		 * 
+		 * x - vågärtt
+		 * y - lodrätt
+		 * 
+		 */
 
-		btnUpgrade.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		btnUpgrade.setBounds(0, 481, 167, 53);
+		//Upgrade
+		btnUpgrade.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		btnUpgrade.setBounds(-5, 400, 154, 50);
+		btnUpgrade.setForeground(Color.WHITE);
 		add(btnUpgrade);
 
-		btnTrade.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		btnTrade.setBounds(163, 532, 167, 46);
-		add(btnTrade);
+		//Downgrade
+		btnDowngrade.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		btnDowngrade.setBounds(145, 400, 154, 50);
+		btnDowngrade.setForeground(Color.WHITE);
+		add(btnDowngrade);
 
-		btnSell.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		btnSell.setBounds(0, 532, 167, 46);
+		//Sell
+		btnSell.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		btnSell.setBounds(-5, 450, 154, 50);
 		btnSell.setForeground(Color.red);
 		add(btnSell);
-		btnSell.setFont(font);
+
+		//Trade
+		btnTrade.setBorder(new MatteBorder(0, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		btnTrade.setBounds(145, 450, 154, 50);
+		btnTrade.setForeground(Color.WHITE);
+		add(btnTrade);
 
 		taLevel.setEditable(false);
 		taLevel.setBounds(46, 38, 263, 53);
@@ -117,7 +134,7 @@ public class PlayerProperties extends JPanel implements ActionListener {
 		lblPicture.setForeground(Color.WHITE);
 
 		lblPicture.setBorder(null);
-		lblPicture.setBounds(0, 0, 330, 480);
+		lblPicture.setBounds(0, 0, 330, 400);
 		add(lblPicture);
 
 		lblPicture.setFont(font);
@@ -125,6 +142,7 @@ public class PlayerProperties extends JPanel implements ActionListener {
 		btnDowngrade.setFont(font);
 		btnUpgrade.setFont(font);
 		btnTrade.setFont(font);
+		btnSell.setFont(font);
 
 		BufferedImage img = null;
 		try {

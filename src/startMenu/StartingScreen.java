@@ -122,10 +122,10 @@ public class StartingScreen extends JFrame {
 	 */
 	public void initializeGUI() {
 
-		bgm.startMusic();
+		//bgm.startMusic();
 
 		createFrame();
-		bgm.startMusic();
+		//bgm.startMusic();
 
 		/**
 		 * JPanel for information about players
@@ -440,7 +440,7 @@ public class StartingScreen extends JFrame {
 		public void startUpGame() {
 			createNewUsers();
 			mainWindow.addPlayer(playerList);
-			mainWindow.startboard();
+			//mainWindow.startboard();
 			dispose();
 			//Introduction intro = new Introduction();
 			addScrollPaneToMainWindow();
