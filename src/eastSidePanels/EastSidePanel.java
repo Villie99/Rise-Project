@@ -38,7 +38,7 @@ public class EastSidePanel extends JPanel {
 	 * Draws the GUI
 	 */
 	public EastSidePanel() {
-		setPreferredSize(new Dimension(345, 860));
+		setPreferredSize(new Dimension(345, 1000));
 		setOpaque(false);
 		setLayout(null);
 		UIManager.put("TabbedPane.contentOpaque", false);
@@ -46,7 +46,7 @@ public class EastSidePanel extends JPanel {
 
 		tab = new JTabbedPane();
 
-		tab.setBounds(0, 0, 355, 860);
+		tab.setBounds(0, 0, 355, 1000);
 		tab.setBackground(new Color(0, 0, 0));
 
 		add(tab);

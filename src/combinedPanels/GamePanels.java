@@ -56,7 +56,7 @@ public class GamePanels extends JPanel {
 
 		setLayout(null);
 		tPanel.setOpaque(false);
-		tPanel.setBounds(1095, 0, 345, 860);
+		tPanel.setBounds(1095, 0, 345, 950);
 		add(tPanel);
 		westPanel.setBounds(0, 0, 345, 860);
 		add(westPanel);
@@ -76,10 +76,13 @@ public class GamePanels extends JPanel {
 			e.printStackTrace();
 		}
 
-		Image bimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		lblPic.setBounds(0, 0, width, height);
 
-		lblPic.setIcon(new ImageIcon(bimg));
+		lblPic.setBackground(Color.GREEN);
+
+		/*Image bimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		lblPic.setBounds(0, 0, width, height);
+		lblPic.setIcon(new ImageIcon(bimg));*/
+		
 		add(lblPic);
 
 	}
@@ -87,7 +90,7 @@ public class GamePanels extends JPanel {
 	/**
 	 * This is where we call the frame
 	 */
-	public void startboard() {
+	/*public void startboard() {
 		frame = new JFrame("Change your fate");
 		frame.setPreferredSize(new Dimension(width + 18, height + 10));
 		frame.setLocation(-9, 0);
@@ -95,7 +98,7 @@ public class GamePanels extends JPanel {
 		frame.setVisible(true);
 		frame.getContentPane().add(this);
 		frame.pack();
-	}
+	}*/
 
 	/**
 	 * @param playerList
