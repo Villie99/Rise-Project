@@ -79,26 +79,13 @@ public class GamePanels extends JPanel {
 
 		lblPic.setBackground(Color.GREEN);
 
-		/*Image bimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		Image bimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		lblPic.setBounds(0, 0, width, height);
-		lblPic.setIcon(new ImageIcon(bimg));*/
+		lblPic.setIcon(new ImageIcon(bimg));
 		
 		add(lblPic);
 
 	}
-
-	/**
-	 * This is where we call the frame
-	 */
-	/*public void startboard() {
-		frame = new JFrame("Change your fate");
-		frame.setPreferredSize(new Dimension(width + 18, height + 10));
-		frame.setLocation(-9, 0);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.getContentPane().add(this);
-		frame.pack();
-	}*/
 
 	/**
 	 * @param playerList

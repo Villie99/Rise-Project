@@ -11,9 +11,10 @@ import javax.swing.UIManager;
 import player.Player;
 import player.PlayerList;
 import tiles.Property;
+import tiles.Tavern;
 
 /**
- * @author Muhammad Abdulkhuder, Aevan Dino.
+ * @author Muhammad Abdulkhuder, Aevan Dino, Brunillda Maloku.
  */
 public class PropertyWindow extends JPanel {
 
@@ -113,6 +114,10 @@ public class PropertyWindow extends JPanel {
 
 	}
 
+	/**
+	 * This method adds new Taverns to the PropertyWindow list of properties.
+	 */
+
 	public void addTav() {
 
 		tab.removeAll();
@@ -122,13 +127,14 @@ public class PropertyWindow extends JPanel {
 		Player currPlayer = playerList.getPlayerFromIndex(getPlayerAt());
 
 		ArrayList<Property> properties = currPlayer.getProperties();
+		ArrayList<Tavern> taverns = currPlayer.getTaverns();
 
-		for (int i =0 ; i< currPlayer.getOwned(); i++){
+		for (int i = 0 ; i < currPlayer.getOwned(); i++){
 			properties.add(new Property(true));
+			properties.get(i).setName(taverns.get(i).getName());
 		}
-		
-		for (int i = 0; i < properties.size(); i++) {
 
+		for (int i = 0; i < properties.size(); i++) {
 			new PropertyWindow();
 			playerProperties = new PlayerProperties(playerList, getPlayerAt(), i, eastSidePanel);
 			String nameText = playerProperties.getLblNameText();
@@ -136,7 +142,6 @@ public class PropertyWindow extends JPanel {
 			tab.addTab(nameText, playerProperties);
 			tab.setBackgroundAt(i, properties.get(i).getColor());
 		}
-
 
 	}
 
