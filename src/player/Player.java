@@ -385,32 +385,32 @@ public class Player {
     /**
      * Updates player rank
      * 
-     * @author Petter Carlsson & Villie Brandt
+     * @author Petter Carlsson & Villie Brandt, updated by Simon Flenman
+     * 
      */
     public String checkPlayerRank() {
 
         int netWorth = getNetWorth();
+        String actionTaken = "Nothing happened";
 
         if (netWorth >= 2000 && netWorth < 4000) {
             setPlayerRank(PlayerRanks.KNIGHT);
-            return rankIconChange(PlayerRanks.KNIGHT);
-        }
+            actionTaken = rankIconChange(PlayerRanks.KNIGHT);
 
-        if (netWorth >= 4000 && netWorth < 7500) {
+        } else if (netWorth >= 4000 && netWorth < 7500) {
             setPlayerRank(PlayerRanks.LORD);
-            return rankIconChange(PlayerRanks.LORD);
-        }
-        if (netWorth >= 7500) {
+            actionTaken = rankIconChange(PlayerRanks.LORD);
+
+        } else if (netWorth >= 7500) {
             setPlayerRank(PlayerRanks.KINGS);
-            return rankIconChange(PlayerRanks.KINGS);
-        }
+            actionTaken = rankIconChange(PlayerRanks.KINGS);
 
-        if (netWorth < 2000) {
+        } else if (netWorth < 2000) {
             setPlayerRank(PlayerRanks.PEASANT);
-            return rankIconChange(PlayerRanks.PEASANT);
+            actionTaken = rankIconChange(PlayerRanks.PEASANT);
         }
 
-        return "Nothing happened";
+        return actionTaken;
     }
 
     /**

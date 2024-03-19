@@ -137,6 +137,7 @@ public class ManageEvents {
 			dice.setPlayerList(playerList.getList());
 			board.removePlayer(player);
 			deathGUI.addGui();
+			player.checkPlayerRank();
 		}
 	}
 
@@ -161,6 +162,7 @@ public class ManageEvents {
 			payRent(tempProperty, player, tempInt);
 			System.out.println("hey");
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -203,6 +205,7 @@ public class ManageEvents {
 				}
 			}
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -240,6 +243,7 @@ public class ManageEvents {
 		westPanel.append(player.getName() + " Got " + tempWorkObject.getPay() + " GC\n");
 		JOptionPane.showMessageDialog(null,
 				"The roll is " + roll + "\n" + "You got: " + tempWorkObject.getPay() + " GC for your hard work");
+		player.checkPlayerRank();
 
 	}
 
@@ -261,6 +265,7 @@ public class ManageEvents {
 			player.decreaseNetWorth(chargePlayer);
 			taxCounter++;
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -290,6 +295,7 @@ public class ManageEvents {
 		} else {
 			payTavernRent(tempTavernObj, player);
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -318,6 +324,7 @@ public class ManageEvents {
 			tempTavernObj.getOwner().increaseNetWorth(randomValue);
 			player.decreaseBalace(randomValue);
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -362,6 +369,7 @@ public class ManageEvents {
 			player.setJailCounter(0);
 			dice.activateRollDice();
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -389,6 +397,7 @@ public class ManageEvents {
 		player.increaseNetWorth(200 * taxCounter);
 		westPanel.append(player.getName() + " got " + taxCounter * 200 + " GC from the church\n");
 		taxCounter = 0;
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -414,6 +423,7 @@ public class ManageEvents {
 		else {
 			westPanel.append(player.getName() + " did not purchase " + property.getName() + "\n");
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -438,6 +448,7 @@ public class ManageEvents {
 		} else {
 			westPanel.append(player.getName() + " did not purchase " + tavern.getName() + "\n");
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -474,11 +485,13 @@ public class ManageEvents {
 			player.setJailCounter(0);
 			player.setPlayerIsInJail(false);
 			westPanel.append(player.getName() + " paid the bail: got free from jail\n");
+			player.checkPlayerRank();
 			dice.activateRollDice();
 		} else {
 			westPanel.append(player.getName() + " did not pay tha bail: remains in jail\n");
 			dice.attemptToGetOutOfJail();
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -497,6 +510,7 @@ public class ManageEvents {
 		} else {
 			fortune(tempCard, player);
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
@@ -528,6 +542,7 @@ public class ManageEvents {
 			westPanel.append(player.getName() + " received " + tempCard.getAmount() + " CG\n");
 			msgGUI.newFortune(true, tempCard.getAmount());
 		}
+		player.checkPlayerRank();
 	}
 
 	/**
