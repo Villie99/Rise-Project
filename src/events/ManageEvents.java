@@ -477,7 +477,8 @@ public class ManageEvents {
 		// eastPanel.updateScores();
 		int totalBail = 600 - player.getJailCounter() * 100;
 		int yesOrNo = JOptionPane.showConfirmDialog(null,
-				player.getName() + " , do you want to pay the bail\nWhich is " + totalBail + " GC?", "JOption",
+				player.getName() + " , do you want to pay the bail\nWhich is " + totalBail + " GC?" + 
+				"\n otherwise you can try to hit equals to get free", "JOption",
 				JOptionPane.YES_NO_OPTION);
 		if (yesOrNo == 0 && (totalBail <= player.getBalance())) {
 			player.decreaseBalace(totalBail);
