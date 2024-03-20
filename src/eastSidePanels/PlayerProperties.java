@@ -194,7 +194,7 @@ public class PlayerProperties extends JPanel implements ActionListener {
 	 * Trades a property
 	 * 
 	 * @return a string that says you have traded a property.
-	 * @autor Petter Carlsson.
+	 * @autor Petter Carlsson. Updated by Simon Flenamn
 	 */
 	private void tradeProperties() {
 		int otherPlayerInt = 0;
